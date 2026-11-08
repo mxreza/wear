@@ -46,8 +46,8 @@ export const hero = {
   eyebrow: "Atelier",
   title: "دوختی در شأن بیمار و درمانگر",
   text: "پوشاک بیمار، لباس جراحی و پک بیمار؛ دوخته‌شده در کارگاه ما برای بیمارستان‌ها و مراکز درمانی.",
-  image: "/images/hero-patient.jpg",
-  imageLabel: "بیمار با لباس بیمارستان روی تخت، کنار پرستار",
+  image: "/images/hero-team.webp",
+  imageLabel: "پنج نفر از کادر درمان با لباس فرم و کلاه، در رنگ‌های طوسی، آبی، سبز زیتونی و کرم",
 };
 
 export const statement = {

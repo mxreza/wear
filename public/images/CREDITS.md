@@ -3,11 +3,11 @@
 Free stock photos from https://www.pexels.com (Pexels License: free to use, attribution not required).
 They are NOT Mehrpoosh's own work — replace them with the workshop's own photos before launch,
 especially the lookbook (نمونه‌کارها) and product pages, which present the photos as Mehrpoosh's products.
+`hero-team.webp` (hero) was supplied by the owner and is not a Pexels photo.
 Product covers (`*-1.jpg`) are cropped to 4:5 (720×900); other photos are resized to ≤ 1100px.
 
 | File | Pexels photo |
 |---|---|
-| hero-patient.jpg (cropped 4:5) | https://www.pexels.com/photo/6129143/ |
 | atelier-tailor.jpg (cropped 4:5) — NOT the owner, sample only | https://www.pexels.com/photo/6461195/ |
 | atelier-workshop.jpg (cropped 3:2) — NOT Mehrpoosh's workshop, sample only | https://www.pexels.com/photo/4492077/ |
 | product-gown.jpg | https://www.pexels.com/photo/6010813/ |
