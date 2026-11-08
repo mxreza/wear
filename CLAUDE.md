@@ -16,7 +16,8 @@ in Hamedan. Do NOT mention licenses/permits anywhere.
   (`app/tailwind.css`, `components.json`, `lib/utils.ts`). Preflight is NOT loaded, so Tailwind
   does not reset the site; shadcn tokens (`--color-foreground` …) map to the site's palette there.
   Don't use Tailwind classes in the hand-written section components.
-- Font: Vazirmatn via `@fontsource/vazirmatn` (self-hosted, no Google Fonts call — works in Iran).
+- Font: Sahel (OFL) via the `sahel-font` package, declared in `app/fonts.css` (self-hosted, no Google
+  Fonts call — works in Iran). Weights available: 300, 400, 600, 700, 900.
 
 ## Where things are
 - `content/site.ts` — ALL copy, products, contact info, image paths. Edit content here, not in components.

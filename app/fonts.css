@@ -1,0 +1,11 @@
+/* Sahel by Saber Rastikerdar (OFL), self-hosted from the `sahel-font` npm package. */
+@font-face { font-family: "Sahel"; font-weight: 300; font-display: swap;
+  src: url("../node_modules/sahel-font/dist/Sahel-Light.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-Light.woff") format("woff"); }
+@font-face { font-family: "Sahel"; font-weight: 400; font-display: swap;
+  src: url("../node_modules/sahel-font/dist/Sahel.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel.woff") format("woff"); }
+@font-face { font-family: "Sahel"; font-weight: 600; font-display: swap;
+  src: url("../node_modules/sahel-font/dist/Sahel-SemiBold.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-SemiBold.woff") format("woff"); }
+@font-face { font-family: "Sahel"; font-weight: 700; font-display: swap;
+  src: url("../node_modules/sahel-font/dist/Sahel-Bold.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-Bold.woff") format("woff"); }
+@font-face { font-family: "Sahel"; font-weight: 900; font-display: swap;
+  src: url("../node_modules/sahel-font/dist/Sahel-Black.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-Black.woff") format("woff"); }
