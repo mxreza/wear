@@ -1,3 +1,5 @@
+import type { RailGarment } from "@/components/ui/product-rail-gallery";
+
 // All page copy lives here. Edit this file to change text, products or contact info.
 // To add a real photo: put the file in /public/images and set `image: "/images/<name>.jpg"`.
 // When `image` is empty, a labelled placeholder is shown instead.
@@ -151,3 +153,74 @@ export const nav = [
   { href: "#process", label: "روش سفارش" },
   { href: "#about", label: "درباره ما" },
 ];
+
+// Interactive clothing rail (second section, right after the hero).
+// `kind` picks the built-in drawing; `color` is the fabric colour.
+// For real photos, add `image` / `backImage` / `sideImage` (transparent PNG/WebP, 200×310 canvas,
+// same scale for all three) from /public/images — the drawing is then replaced by the photo.
+
+export const rail = {
+  eyebrow: "رگال محصولات پارسا",
+  heading: "لباس‌ها را از روی رگال ببینید",
+  caption: "روی لباس‌ها بروید یا بکشید؛ روی هر کدام بزنید تا پشت و جزئیاتش را ببینید.",
+  cta: "استعلام قیمت سفارش عمده",
+  labels: { front: "جلو", back: "پشت", close: "بستن", show: "نمایش" },
+  items: [
+    {
+      id: "gown",
+      name: "گان بیمار",
+      kind: "coat",
+      color: "#9cc7de",
+      tag: "عمده",
+      description: "گان بلند بیمار برای بستری و اقدامات درمانی؛ همراه کلاه و شلوار، در تعداد عمده.",
+      details: ["گان، کلاه و شلوار", "سفارش عمده"],
+    },
+    {
+      id: "mri",
+      name: "ست کامل MRI",
+      kind: "tee",
+      color: "#5f8fb8",
+      tag: "MRI",
+      description: "ست کامل لباس بیمار برای بخش MRI و مراکز تصویربرداری.",
+      details: ["مراکز تصویربرداری", "ست کامل"],
+    },
+    {
+      id: "spun-women",
+      name: "بلوز اسپان زنانه",
+      kind: "tee",
+      color: "#a9d6cf",
+      tag: "اسپان",
+      description: "از پارچه‌ی اسپان؛ سبک و اقتصادی برای کادر درمان.",
+      details: ["اسپان", "زنانه", "بلوز و شلوار"],
+    },
+    {
+      id: "spun-men",
+      name: "بلوز اسپان مردانه",
+      kind: "tee",
+      color: "#7fb3c9",
+      tag: "اسپان",
+      description: "از پارچه‌ی اسپان؛ سبک و اقتصادی برای کادر درمان.",
+      details: ["اسپان", "مردانه", "بلوز و شلوار"],
+    },
+    {
+      id: "tetron",
+      name: "پیراهن تترون",
+      kind: "shirt",
+      color: "#1f7a72",
+      trim: "#e8f2f0",
+      tag: "تترون",
+      description: "از پارچه‌ی تترون برای استفاده‌ی مکرر و شست‌وشوی چندباره.",
+      details: ["تترون", "زنانه و مردانه", "پیراهن و شلوار"],
+    },
+    {
+      id: "tetron-kids",
+      name: "پیراهن تترون بچگانه",
+      kind: "shirt",
+      color: "#8fc1a9",
+      trim: "#f4fbf8",
+      tag: "بچگانه",
+      description: "سایز بچگانه از پارچه‌ی تترون، مناسب بخش‌های کودکان.",
+      details: ["تترون", "بچگانه"],
+    },
+  ] satisfies RailGarment[],
+};

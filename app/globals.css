@@ -166,3 +166,7 @@ p { margin: 0; }
   .pack-media, .about-media { height: 320px; }
   .stat-value { font-size: 32px; }
 }
+
+/* Clothing rail (components/ui/product-rail-gallery.tsx, styled with Tailwind) */
+.rail-section { padding-block: 8px 56px; }
+.rail-frame { border: 2px dashed var(--line); }

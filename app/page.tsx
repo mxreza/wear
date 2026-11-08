@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import RailShowcase from "@/components/RailShowcase";
 import StatsBand from "@/components/StatsBand";
 import Products from "@/components/Products";
 import PatientPack from "@/components/PatientPack";
@@ -16,6 +17,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <RailShowcase />
         <StatsBand />
         <Products />
         <PatientPack />

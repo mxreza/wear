@@ -11,17 +11,24 @@ in Hamedan. Do NOT mention licenses/permits anywhere.
 
 ## Stack
 - Next.js 15 App Router, React 19, TypeScript, static export (`output: "export"` → `/out`).
-- Plain CSS in `app/globals.css` (design tokens in `:root`). No Tailwind.
+- Plain CSS in `app/globals.css` (design tokens in `:root`) for all hand-written sections.
+- Tailwind v4 + shadcn structure ONLY for third-party components in `components/ui/`
+  (`app/tailwind.css`, `components.json`, `lib/utils.ts`). Preflight is NOT loaded, so Tailwind
+  does not reset the site; shadcn tokens (`--color-foreground` …) map to the site's palette there.
+  Don't use Tailwind classes in the hand-written section components.
 - Font: Vazirmatn via `@fontsource/vazirmatn` (self-hosted, no Google Fonts call — works in Iran).
 
 ## Where things are
 - `content/site.ts` — ALL copy, products, contact info, image paths. Edit content here, not in components.
 - `components/` — one component per section, in page order (see `app/page.tsx`).
+- `components/RailShowcase.tsx` + `components/ui/product-rail-gallery.tsx` — interactive clothing rail
+  (2nd section). Content in `rail` in `content/site.ts`; garments are drawn until photos are added.
 - `components/Media.tsx` — shows an image if `src` is set, else a labelled placeholder.
 - `public/images/` — put real photos and logo here, then reference them as `/images/<file>`.
 
 ## Pending (placeholders still in place)
 - Logo (currently a green circle with «پ»).
+- Rail garment photos (`image`/`backImage`/`sideImage`, transparent 200×310 cut-outs).
 - All photos: hero, 5 products, patient pack, 6 gallery items, workshop.
 - Workshop story line in `about.story`.
 - WhatsApp / Eitaa / Telegram links in `contact` (buttons appear automatically when set).

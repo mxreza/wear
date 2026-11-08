@@ -1,0 +1,33 @@
+/* Tailwind v4 for components in components/ui (shadcn-style).
+   Preflight is intentionally NOT imported so the hand-written design in globals.css
+   is not reset. Only theme tokens + utilities are loaded. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
+
+@source "../components";
+
+/* shadcn token names mapped onto the site's own palette (see :root in globals.css). */
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --color-muted-foreground: var(--ink-3);
+  --color-card: #fff;
+  --color-card-foreground: var(--ink);
+  --color-border: var(--line);
+  --color-ring: var(--accent);
+  --font-sans: var(--font);
+}
+
+/* Minimal scoped reset, since preflight is off. */
+@layer base {
+  [data-slot] *, [data-slot] ::before, [data-slot] ::after,
+  [role="dialog"] *, [role="dialog"] ::before, [role="dialog"] ::after {
+    border-width: 0; border-style: solid; border-color: var(--color-border);
+  }
+  [data-slot] button, [role="dialog"] button {
+    background: none; padding: 0; margin: 0; font: inherit; color: inherit;
+  }
+  [role="dialog"] ul { list-style: none; margin: 0; padding: 0; }
+}

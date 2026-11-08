@@ -4,6 +4,7 @@ import "@fontsource/vazirmatn/500.css";
 import "@fontsource/vazirmatn/700.css";
 import "@fontsource/vazirmatn/800.css";
 import "@fontsource/vazirmatn/900.css";
+import "./tailwind.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
