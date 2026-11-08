@@ -1,8 +1,8 @@
 # Temporary sample photos (Pexels)
 
 Free stock photos from https://www.pexels.com (Pexels License: free to use, attribution not required).
-They are placeholders only — replace with real photos of Parsa's products and workshop before launch,
-especially the gallery («نمونه‌کارها») and the workshop photo, which present as Parsa's own work.
+They are placeholders only — replace with real photos of Mehrpoosh's products and workshop before launch,
+especially the gallery («نمونه‌کارها») and the workshop photo, which present as Mehrpoosh's own work.
 
 | File | Pexels photo |
 |---|---|

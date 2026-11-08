@@ -4,18 +4,18 @@ import type { RailGarment } from "@/components/ui/product-rail-gallery";
 // To add a real photo: put the file in /public/images and set `image: "/images/<name>.jpg"`.
 // When `image` is empty, a labelled placeholder is shown instead.
 // NOTE: current photos are temporary free stock photos from Pexels (see public/images/CREDITS.md).
-// Replace them with real photos of Parsa's own products and workshop before launch.
+// Replace them with real photos of Mehrpoosh's own products and workshop before launch.
 
 export const brand = {
-  name: "پارسا",
-  fullName: "تولیدی پوشاک پزشکی پارسا",
+  name: "مهرپوش",
+  fullName: "تولیدی پوشاک پزشکی مهرپوش",
   tagline: "تولیدی پوشاک پزشکی",
   logo: "", // e.g. "/images/logo.svg"
   slogan: "تولید مستقیم | کیفیت مناسب | تنوع محصولات | سفارش عمده",
 };
 
 export const contact = {
-  person: "آقای طاهری",
+  person: "خانم پریسا طاهری",
   phoneDisplay: "۰۹۳۰ ۱۷۷ ۵۱۳۳",
   phoneTel: "09301775133",
   whatsapp: "", // e.g. "https://wa.me/989301775133"
@@ -25,7 +25,7 @@ export const contact = {
 
 export const hero = {
   title: "لباس بیمار، پرستار و پزشک، مستقیم از دست تولیدکننده",
-  text: "تولیدی پوشاک پزشکی پارسا برای بیمارستان‌ها، درمانگاه‌ها، مراکز تصویربرداری، کلینیک‌ها و داروخانه‌ها لباس و پک بیمار را در تعداد عمده می‌دوزد و تحویل می‌دهد.",
+  text: "تولیدی پوشاک پزشکی مهرپوش برای بیمارستان‌ها، درمانگاه‌ها، مراکز تصویربرداری، کلینیک‌ها و داروخانه‌ها لباس و پک بیمار را در تعداد عمده می‌دوزد و تحویل می‌دهد.",
   proof: "تأمین‌کننده‌ی بیمارستان‌ها و داروخانه‌های همدان",
   image: "/images/hero-patient.jpg",
   imageLabel: "بیمار با لباس بیمارستان روی تخت، کنار پرستار",
@@ -136,7 +136,7 @@ export const gallery = [
 ];
 
 export const about = {
-  title: "پارسا یک کارگاه خیاطی است، نه یک فروشگاه",
+  title: "مهرپوش یک کارگاه خیاطی است، نه یک فروشگاه",
   text: "ما لباس را خودمان می‌دوزیم و مستقیم به مراکز درمانی می‌رسانیم. مشتری‌های ما بیمارستان‌ها، درمانگاه‌ها و داروخانه‌های همدان هستند و بیشترشان بارها سفارش داده‌اند.",
   story: "[اینجا یک یا دو جمله از داستان کارگاه بیاید: از کی شروع شد و چرا.]",
   image: "/images/about-workshop.jpg",
@@ -146,7 +146,7 @@ export const about = {
 export const contactSection = {
   title: "برای سفارش عمده و استعلام قیمت تماس بگیرید",
   text: "نوع لباس و تعداد تقریبی را بگویید. قیمت و زمان تحویل را همان روز اعلام می‌کنیم.",
-  cta: "تماس با پارسا",
+  cta: "تماس با مهرپوش",
 };
 
 export const nav = [
@@ -162,7 +162,7 @@ export const nav = [
 // same scale for all three) from /public/images — the drawing is then replaced by the photo.
 
 export const rail = {
-  eyebrow: "رگال محصولات پارسا",
+  eyebrow: "رگال محصولات مهرپوش",
   heading: "لباس‌ها را از روی رگال ببینید",
   caption: "روی لباس‌ها بروید یا بکشید؛ روی هر کدام بزنید تا پشت و جزئیاتش را ببینید.",
   cta: "استعلام قیمت سفارش عمده",

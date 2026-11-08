@@ -1,6 +1,7 @@
-# Parsa medical apparel landing page
+# Mehrpoosh medical apparel landing page
 
-One-page Persian (RTL) landing page for «تولیدی پوشاک پزشکی پارسا», a sewing workshop in Hamedan
+One-page Persian (RTL) landing page for «تولیدی پوشاک پزشکی مهرپوش», a sewing workshop in Hamedan
+owned by خانم پریسا طاهری (Parisa Taheri), the contact person on the page,
 that produces hospital clothing (patient gowns, MRI sets, spun-bond and Tetron staff wear, patient
 packs) for bulk orders from hospitals, clinics, imaging centers and pharmacies.
 
@@ -28,7 +29,7 @@ in Hamedan. Do NOT mention licenses/permits anywhere.
 - `public/images/` — put real photos and logo here, then reference them as `/images/<file>`.
 
 ## Pending (placeholders still in place)
-- Logo (currently a green circle with «پ»).
+- Logo (currently a green circle with «م»).
 - Rail garment photos (`image`/`backImage`/`sideImage`, transparent 200×310 cut-outs).
 - Real photos for hero, 5 products, patient pack, 6 gallery items, workshop. These currently show
   TEMPORARY Pexels stock photos (list in `public/images/CREDITS.md`) — replace before launch.

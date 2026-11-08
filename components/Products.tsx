@@ -5,7 +5,7 @@ export default function Products() {
   return (
     <section id="products" className="container section">
       <div className="section-head">
-        <h2 className="section-title">محصولات پارسا</h2>
+        <h2 className="section-title">محصولات مهرپوش</h2>
         <p className="muted">
           از لباس بیمار تا لباس کادر درمان، زنانه، مردانه و بچگانه. اسپان برای مصرف سبک و اقتصادی، تترون برای استفاده‌ی مکرر.
         </p>

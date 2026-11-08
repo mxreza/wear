@@ -8,7 +8,7 @@ export default function Header() {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={brand.logo} alt="" width={52} height={52} />
         ) : (
-          <span className="logo-mark" aria-hidden="true">پ</span>
+          <span className="logo-mark" aria-hidden="true">م</span>
         )}
         <span className="logo-text">
           <span className="logo-name">{brand.name}</span>
