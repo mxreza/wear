@@ -9,8 +9,16 @@ export default function Clients() {
         <SectionHeader id="clients" no={s.no} label={s.label} />
         <h2 id="clients-title" className="clients-title rv" data-reveal>{clients.title}</h2>
         <ul className="clients-list" data-reveal>
-          {clients.names.map((name, i) => (
-            <li key={i} className="rv" style={{ ["--i" as string]: i }}>{name}</li>
+          {clients.items.map((c, i) => (
+            <li key={i} className="client rv" style={{ ["--i" as string]: i }}>
+              {c.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className="client-logo" src={c.logo} alt="" loading="lazy" />
+              ) : (
+                <span className="client-logo client-logo--ph" aria-hidden="true">{clients.logoPlaceholder}</span>
+              )}
+              <span className="client-name">{c.name}</span>
+            </li>
           ))}
         </ul>
       </div>

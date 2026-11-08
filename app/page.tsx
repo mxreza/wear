@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import RailShowcase from "@/components/RailShowcase";
 import Statement from "@/components/Statement";
 import Collections from "@/components/Collections";
 import Lookbook from "@/components/Lookbook";
@@ -17,6 +18,7 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+        <RailShowcase />
         <Statement />
         <Collections />
         <Lookbook />

@@ -72,8 +72,6 @@ export type Collection = {
   materials: string[];
   image: string;
   imageLabel: string;
-  href: string;
-  cta: string;
   isNew?: boolean;
 };
 
@@ -85,8 +83,6 @@ export const collections: Collection[] = [
     materials: ["[پارچه]"],
     image: "/images/product-gown.jpg",
     imageLabel: "بیمار با گان آبی بیمارستان",
-    href: "#lookbook",
-    cta: "دیدن نمونه‌ها",
   },
   {
     id: "staff",
@@ -95,8 +91,6 @@ export const collections: Collection[] = [
     materials: ["اسپان", "تترون"],
     image: "/images/collection-staff.jpg",
     imageLabel: "کادر درمان با لباس جراحی در اتاق عمل",
-    href: "#lookbook",
-    cta: "دیدن نمونه‌ها",
   },
   {
     id: "pack",
@@ -105,31 +99,209 @@ export const collections: Collection[] = [
     materials: ["لباس بیمار", "دمپایی", "دماسنج", "کیف"],
     image: "/images/product-pack.jpg",
     imageLabel: "کیف کوچک با اقلام بهداشتی",
-    href: "#pack",
-    cta: "دیدن نمونه‌ها",
     isNew: true,
   },
 ];
 
-export type LookbookItem = {
+export type ProductImage = { src: string; label: string };
+
+export type Product = {
+  slug: string; // URL: /products/<slug>/
   title: string;
+  collection: "patient" | "staff" | "pack";
   fabric: string;
   use: string;
   type: string;
-  image: string;
-  imageLabel: string;
+  summary: string;
+  description: string[];
+  details: string[];
+  /** First image is the cover (lookbook + top of the product page). */
+  images: ProductImage[];
 };
 
-/** Portfolio core. Replace placeholders with photos of the workshop's own garments. */
-export const lookbook: LookbookItem[] = [
-  { title: "گان بیمار", fabric: "[پارچه]", use: "بخش بستری", type: "[یکبارمصرف / چندبارمصرف]", image: "", imageLabel: "[عکس نمونه‌کار: گان بیمار]" },
-  { title: "ست کامل MRI", fabric: "[پارچه]", use: "مراکز تصویربرداری", type: "[یکبارمصرف / چندبارمصرف]", image: "", imageLabel: "[عکس نمونه‌کار: ست MRI]" },
-  { title: "کلاه و شلوار بیمار", fabric: "[پارچه]", use: "بستری و اقدامات درمانی", type: "[یکبارمصرف / چندبارمصرف]", image: "", imageLabel: "[عکس نمونه‌کار: کلاه و شلوار بیمار]" },
-  { title: "لباس جراحی", fabric: "[پارچه]", use: "اتاق عمل", type: "[یکبارمصرف / چندبارمصرف]", image: "", imageLabel: "[عکس نمونه‌کار: لباس جراحی]" },
-  { title: "بلوز و شلوار اسپان", fabric: "اسپان", use: "کادر درمان", type: "[یکبارمصرف / چندبارمصرف]", image: "", imageLabel: "[عکس نمونه‌کار: بلوز و شلوار اسپان]" },
-  { title: "پیراهن و شلوار تترون", fabric: "تترون", use: "کادر درمان", type: "چندبارمصرف", image: "", imageLabel: "[عکس نمونه‌کار: پیراهن و شلوار تترون]" },
-  { title: "پوشاک تترون بچگانه", fabric: "تترون", use: "[بخش / کاربرد]", type: "چندبارمصرف", image: "", imageLabel: "[عکس نمونه‌کار: پوشاک بچگانه]" },
+const ORDER_NOTE = "مدل، رنگ و سایز را پیش از دوخت با شما نهایی می‌کنیم تا سفارش در تعداد بالا هم یکدست بماند. فقط سفارش عمده می‌پذیریم.";
+
+/** Every product gets its own page and a place in the lookbook. Photos are temporary Pexels stock. */
+export const products: Product[] = [
+  {
+    slug: "patient-gown",
+    title: "گان بیمار",
+    collection: "patient",
+    fabric: "[پارچه]",
+    use: "بخش بستری",
+    type: "[یکبارمصرف / چندبارمصرف]",
+    summary: "گان بیمار برای بستری و اقدامات درمانی؛ همراه کلاه و شلوار، در تعداد عمده.",
+    description: [
+      "گان بیمار در کارگاه خودمان در همدان برش می‌خورد، دوخته می‌شود و بی‌واسطه به مرکز درمانی می‌رسد.",
+      ORDER_NOTE,
+      "[جزئیات گان: نوع بستن، طول، سایزبندی و رنگ‌های موجود]",
+    ],
+    details: ["بخش بستری", "همراه کلاه و شلوار", "سفارش عمده", "[سایزبندی]"],
+    images: [
+      { src: "/images/products/patient-gown-1.jpg", label: "بیمار با گان آبی روی تخت" },
+      { src: "/images/products/patient-gown-2.jpg", label: "بیمار با گان روی ویلچر" },
+      { src: "/images/products/patient-gown-3.jpg", label: "بیمار با گان در تخت بستری" },
+      { src: "/images/products/patient-gown-4.jpg", label: "پرستار کنار بیمار با گان" },
+    ],
+  },
+  {
+    slug: "mri-set",
+    title: "ست کامل MRI",
+    collection: "patient",
+    fabric: "[پارچه]",
+    use: "مراکز تصویربرداری",
+    type: "[یکبارمصرف / چندبارمصرف]",
+    summary: "ست کامل لباس بیمار برای بخش MRI و مراکز تصویربرداری.",
+    description: [
+      "ست کامل لباس بیمار برای بخش MRI، دوخته‌شده در کارگاه خودمان و تحویل‌شده در تعداد عمده.",
+      ORDER_NOTE,
+      "[اجزای ست MRI و جزئیات پارچه]",
+    ],
+    details: ["مراکز تصویربرداری", "ست کامل", "سفارش عمده"],
+    images: [
+      { src: "/images/products/mri-set-1.jpg", label: "بیمار روی تخت دستگاه MRI" },
+      { src: "/images/products/mri-set-2.jpg", label: "اتاق MRI و بیمار آماده‌ی تصویربرداری" },
+      { src: "/images/products/mri-set-3.jpg", label: "دستگاه MRI و نمایشگر اتاق کنترل" },
+      { src: "/images/products/mri-set-4.jpg", label: "کارشناس تصویربرداری کنار بیمار" },
+    ],
+  },
+  {
+    slug: "patient-set",
+    title: "کلاه و شلوار بیمار",
+    collection: "patient",
+    fabric: "[پارچه]",
+    use: "بستری و اقدامات درمانی",
+    type: "[یکبارمصرف / چندبارمصرف]",
+    summary: "کلاه و شلوار بیمار، جدا یا همراه گان، برای بخش‌های بستری.",
+    description: [
+      "کلاه و شلوار بیمار را می‌توانید همراه گان یا جداگانه سفارش دهید.",
+      ORDER_NOTE,
+      "[جزئیات کلاه و شلوار: کش، بند، سایزبندی]",
+    ],
+    details: ["بستری و اقدامات درمانی", "جدا یا همراه گان", "سفارش عمده"],
+    images: [
+      { src: "/images/products/patient-set-1.jpg", label: "بیمار با لباس بیمارستان روی تخت" },
+      { src: "/images/products/patient-set-2.jpg", label: "بیمار روی ویلچر کنار پزشک" },
+      { src: "/images/products/patient-set-3.jpg", label: "بیمار با لباس بیمارستان روی ویلچر در راهرو" },
+    ],
+  },
+  {
+    slug: "surgical-scrubs",
+    title: "لباس جراحی",
+    collection: "staff",
+    fabric: "[پارچه]",
+    use: "اتاق عمل",
+    type: "[یکبارمصرف / چندبارمصرف]",
+    summary: "لباس جراحی برای جراح، پزشک و پرستار؛ زنانه و مردانه.",
+    description: [
+      "لباس جراحی برای تیم اتاق عمل، از جراح تا پرستار، در کارگاه خودمان دوخته می‌شود.",
+      ORDER_NOTE,
+      "[جزئیات لباس جراحی: یقه، جیب‌ها، رنگ‌ها]",
+    ],
+    details: ["اتاق عمل", "جراح، پزشک و پرستار", "زنانه و مردانه", "سفارش عمده"],
+    images: [
+      { src: "/images/products/surgical-scrubs-1.jpg", label: "تیم جراحی با لباس و کلاه جراحی" },
+      { src: "/images/products/surgical-scrubs-2.jpg", label: "کادر درمان با لباس جراحی" },
+      { src: "/images/products/surgical-scrubs-3.jpg", label: "جراح با کلاه و ماسک" },
+      { src: "/images/products/surgical-scrubs-4.jpg", label: "جراح با لباس جراحی در اتاق عمل" },
+    ],
+  },
+  {
+    slug: "spunbond-set",
+    title: "بلوز و شلوار اسپان",
+    collection: "staff",
+    fabric: "اسپان",
+    use: "کادر درمان",
+    type: "[یکبارمصرف / چندبارمصرف]",
+    summary: "بلوز و شلوار از پارچه‌ی اسپان؛ سبک و اقتصادی برای کادر درمان.",
+    description: [
+      "بلوز و شلوار اسپان، زنانه و مردانه، برای کادر درمان؛ سبک و اقتصادی.",
+      ORDER_NOTE,
+      "[جزئیات: گرماژ پارچه، رنگ‌ها، سایزبندی]",
+    ],
+    details: ["پارچه‌ی اسپان", "زنانه و مردانه", "سبک و اقتصادی", "سفارش عمده"],
+    images: [
+      { src: "/images/products/spunbond-set-1.jpg", label: "کادر درمان با روپوش آبی" },
+      { src: "/images/products/spunbond-set-2.jpg", label: "پوشیدن لباس محافظ در بیمارستان" },
+      { src: "/images/products/spunbond-set-3.jpg", label: "پارچه‌ی آبی تاشده" },
+    ],
+  },
+  {
+    slug: "tetron-set",
+    title: "پیراهن و شلوار تترون",
+    collection: "staff",
+    fabric: "تترون",
+    use: "کادر درمان",
+    type: "چندبارمصرف",
+    summary: "پیراهن و شلوار تترون برای استفاده‌ی مکرر و شست‌وشوی چندباره.",
+    description: [
+      "پیراهن و شلوار تترون، زنانه و مردانه، برای کادر درمان؛ برای استفاده‌ی مکرر و شست‌وشوی چندباره.",
+      ORDER_NOTE,
+      "[جزئیات: رنگ‌ها، جیب‌ها، سایزبندی]",
+    ],
+    details: ["پارچه‌ی تترون", "زنانه و مردانه", "شست‌وشوی چندباره", "سفارش عمده"],
+    images: [
+      { src: "/images/products/tetron-set-1.jpg", label: "پرستار با لباس فرم سبز" },
+      { src: "/images/products/tetron-set-2.jpg", label: "پرستار با لباس فرم آبی" },
+      { src: "/images/products/tetron-set-3.jpg", label: "پزشک با لباس فرم سرمه‌ای" },
+      { src: "/images/products/tetron-set-4.jpg", label: "پرستار با لباس فرم در راهروی بیمارستان" },
+    ],
+  },
+  {
+    slug: "tetron-kids",
+    title: "پوشاک تترون بچگانه",
+    collection: "staff",
+    fabric: "تترون",
+    use: "[بخش / کاربرد]",
+    type: "چندبارمصرف",
+    summary: "پوشاک تترون در سایز بچگانه.",
+    description: [
+      "پوشاک تترون در سایز بچگانه، با همان برش و دوخت مجموعه‌ی کادر درمان.",
+      ORDER_NOTE,
+      "[کاربرد و سایزبندی پوشاک بچگانه]",
+    ],
+    details: ["پارچه‌ی تترون", "سایز بچگانه", "سفارش عمده"],
+    images: [
+      { src: "/images/products/tetron-kids-1.jpg", label: "پرستار در راهروی بیمارستان" },
+      { src: "/images/products/tetron-kids-2.jpg", label: "پرستار کنار نمایشگر بخش" },
+      { src: "/images/products/tetron-kids-3.jpg", label: "پارچه‌های تاشده" },
+    ],
+  },
+  {
+    slug: "patient-pack",
+    title: "پک بیمار",
+    collection: "pack",
+    fabric: "—",
+    use: "پذیرش بیمار",
+    type: "[یکبارمصرف / چندبارمصرف]",
+    summary: "هر آنچه بیمار در روز پذیرش نیاز دارد، در یک کیف.",
+    description: [
+      "به‌جای سفارش جداگانه‌ی هر قلم، یک پک آماده تحویل بگیرید: لباس بیمار (گان، کلاه و شلوار)، دمپایی، دماسنج و کیف بیمار.",
+      "ترکیب پک را برای هر بخش جداگانه می‌بندیم. فقط سفارش عمده می‌پذیریم.",
+    ],
+    details: ["لباس بیمار", "دمپایی", "دماسنج", "کیف بیمار", "ترکیب برای هر بخش"],
+    images: [
+      { src: "/images/products/patient-pack-1.jpg", label: "کیف باز با اقلام بهداشتی" },
+      { src: "/images/products/patient-pack-2.jpg", label: "کیف و اقلام مراقبت" },
+      { src: "/images/products/patient-pack-3.jpg", label: "دماسنج دیجیتال" },
+      { src: "/images/products/patient-pack-4.jpg", label: "دماسنج و اقلام دارویی" },
+    ],
+  },
 ];
+
+export const productBySlug = (slug: string) => products.find((p) => p.slug === slug);
+export const productsIn = (collection: Product["collection"]) => products.filter((p) => p.collection === collection);
+export const productHref = (slug: string) => `/products/${slug}/`;
+
+export const productPage = {
+  breadcrumbHome: "خانه",
+  galleryLabel: "عکس‌های محصول",
+  detailsTitle: "ویژگی‌ها",
+  related: "دیگر محصولات این مجموعه",
+  back: "بازگشت به نمونه‌کارها",
+  call: "تماس برای سفارش این محصول",
+  view: "دیدن محصول",
+};
 
 export const lookbookLabels = { fabric: "پارچه", use: "کاربرد", type: "نوع" };
 
@@ -170,7 +342,16 @@ export const atelier = {
 
 export const clients = {
   title: "مورد اعتماد بیمارستان‌ها و داروخانه‌های همدان",
-  names: ["[نام مرکز]", "[نام مرکز]", "[نام مرکز]", "[نام مرکز]", "[نام مرکز]", "[نام مرکز]"],
+  /** Only real customers. `logo`: file in /public/images/clients/ (use only with the centre's permission). */
+  items: [
+    { name: "[نام مرکز]", logo: "" },
+    { name: "[نام مرکز]", logo: "" },
+    { name: "[نام مرکز]", logo: "" },
+    { name: "[نام مرکز]", logo: "" },
+    { name: "[نام مرکز]", logo: "" },
+    { name: "[نام مرکز]", logo: "" },
+  ],
+  logoPlaceholder: "لوگو",
 };
 
 export const contactSection = {

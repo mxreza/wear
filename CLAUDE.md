@@ -22,13 +22,25 @@ women, men, children), پک بیمار (new: admission pack, configurable per wa
   pieces in `components/motion/` are client components.
 - Fonts (self-hosted, work in Iran): Sahel (`sahel-font`, `app/fonts.css`; 300/400/600/700/900) and
   Cormorant Garamond italic 500 (`@fontsource/cormorant-garamond`, Latin only).
-- Tailwind v4 + shadcn structure exist ONLY for `components/ui/` (the clothing-rail component, currently
-  not rendered). `app/tailwind.css` is imported by `components/RailShowcase.tsx`, not globally.
+- `trailingSlash: true` → `/products/<slug>/index.html`, so pages work on any plain host as well as Vercel.
+- Tailwind v4 + shadcn structure exist ONLY for `components/ui/` (the clothing rail). The rail and its
+  Tailwind CSS are loaded lazily in the browser (`components/motion/RailLazy.tsx` → `RailClient.tsx`, which
+  imports `app/tailwind.css`) when the rail nears the viewport; `.rail-slot` reserves its height (760px / 640px
+  mobile) so nothing shifts. Rendering it on the server made the home HTML 2.3× larger and cost ~6 Lighthouse points.
 
 ## Where things are
 - `content/site.ts` — ALL copy, collections, lookbook, craft steps, numbers, clients, contact, image paths.
-- `app/page.tsx` — section order: Header, Hero, Statement, Collections, Lookbook, PatientPack, Craft,
-  Numbers, Atelier, Clients, Contact, Footer (one component each in `components/`).
+- `app/page.tsx` — section order: Header, Hero, Rail (RailShowcase), Statement, Collections, Lookbook,
+  PatientPack, Craft, Numbers, Atelier, Clients, Contact, Footer (one component each in `components/`).
+- `app/products/[slug]/page.tsx` — one static page per entry in `products` (content/site.ts): sticky info
+  column (collection label, title, summary, garment label, call CTA), photo gallery (first photo full width,
+  then pairs), description, numbered details, related products, Contact, Footer. `Header`/`Footer` take
+  `home={false}` there so nav links point to `/#section`.
+- `products` in content/site.ts drives the lookbook, the product chips on collection cards and the pages.
+  The first image of each product is its cover. Add a product = add an entry + photos in `public/images/products/`.
+- Collections section fits one screen: `min-height: 100svh` row of three cards on desktop; a swipeable
+  scroll-snap row below 1024px (checked at 360/375/390px).
+- Clients: `clients.items` = `{ name, logo }`; logo files go in `public/images/clients/` (only with permission).
 - `components/Media.tsx` — image or placeholder; always pass `ratio` so photos cause no layout shift.
 - `components/SectionHeader.tsx` («No. 0X — label» + stitch), `Stitch.tsx`, `CareLabel.tsx`, `Monogram.tsx`.
 - `components/motion/` — SmoothScroll, ScrollProgress, RevealObserver, ParallaxInner, HeroParallax,
@@ -61,7 +73,10 @@ container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
 ## Motion rules
 - Animate only `transform`, `opacity` (+ SVG stroke-dashoffset/pathLength). Ease `cubic-bezier(.22,1,.36,1)`, 400–900ms, nothing bouncy.
 - Content is readable without JS: `<html class="js">` is set by an inline script; reveal CSS only hides
-  `[data-reveal]:not(.in)` under `.js`. `RevealObserver` adds `.in`. Don't wrap the hero in reveals.
+  `[data-reveal]:not(.in)` under `.js`. `RevealObserver` adds `.in`. Never put first-screen content (hero,
+  product cover photo) inside a reveal: it then waits for JS and LCP jumps by ~1s.
+- Text above the fold must not change line count when the web font swaps in (e.g. breadcrumb is one line,
+  fixed height) — otherwise CLS.
 - Client motion effects check `useMotionOK()` (mounted + no reduced motion) and render static otherwise.
 - `prefers-reduced-motion`: no Lenis, parallax, pinning, scroll-progress or scroll-linked effects; opacity-only fades.
 - One pinned element only: the lookbook horizontal strip (≥1024px). Keep its DOM identical in both
@@ -70,9 +85,10 @@ container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
 
 ## Pending (placeholders)
 - Logo (monogram «م» in `components/Monogram.tsx`; set `brand.logo` to replace).
-- Lookbook photos (7), atelier portrait + workshop photo, `atelier.story`, fabric/type for lookbook items,
-  `[پارچه]` for patient wear, client names (`clients.names`), WhatsApp/Eitaa links (buttons appear when set).
-- Replace temporary Pexels photos (hero, collections, pack) with the workshop's own photos.
+- Real client names + logos (`clients.items`) — only centres that really are customers.
+- Atelier portrait + workshop photo, `atelier.story`, `[bracketed]` facts in `products` (fabric, type,
+  sizes, details), `[پارچه]` for patient wear, WhatsApp/Eitaa links (buttons appear when set).
+- Replace ALL temporary Pexels photos (hero, collections, pack, every product) with the workshop's own photos.
 
 ## Conventions
 - Persian digits in visible Persian text (`lib/fa.ts`); `tel:` uses Latin digits. Latin italic only for

@@ -7,8 +7,9 @@ import Monogram from "./Monogram";
 /**
  * Transparent over the hero; paper + soft shadow after scrolling. Hides on scroll down, returns on scroll up.
  * A gold dot slides under the nav link of the section in view. Below 1024px the nav becomes a menu panel.
+ * On sub-pages (`home={false}`) links point back to the home page sections, except #contact (on every page).
  */
-export default function Header() {
+export default function Header({ home = true }: { home?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
@@ -35,8 +36,11 @@ export default function Header() {
     return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
   }, []);
 
-  // Active section
+  const hrefFor = (href: string) => (home || href === "#contact" ? href : `/${href}`);
+
+  // Active section (home page only)
   useEffect(() => {
+    if (!home) return;
     const ids = nav.map((n) => n.href.slice(1));
     const els = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => !!el);
     // Track every nav section crossing the middle band of the viewport; none → no active link.
@@ -50,7 +54,7 @@ export default function Header() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [home]);
 
   // Move the gold dot under the active link
   const placeDot = useCallback(() => {
@@ -85,7 +89,7 @@ export default function Header() {
   return (
     <header className={cls}>
       <div className="container header-inner">
-        <a href="#top" className="wordmark" aria-label={brand.fullName}>
+        <a href={home ? "#top" : "/"} className="wordmark" aria-label={brand.fullName}>
           <Monogram />
           <span className="wordmark-name">{brand.name}</span>
         </a>
@@ -105,7 +109,7 @@ export default function Header() {
             <a
               key={item.href}
               className="nav-link"
-              href={item.href}
+              href={hrefFor(item.href)}
               aria-current={active === item.href.slice(1) ? "true" : undefined}
               onClick={() => setOpen(false)}
             >
