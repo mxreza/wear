@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/cormorant-garamond/latin-500-italic.css";
 import "lenis/dist/lenis.css";
 import "./fonts.css";
 import "./globals.css";

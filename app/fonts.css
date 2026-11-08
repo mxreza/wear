@@ -7,5 +7,12 @@
   src: url("../node_modules/sahel-font/dist/Sahel-SemiBold.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-SemiBold.woff") format("woff"); }
 @font-face { font-family: "Sahel"; font-weight: 700; font-display: swap;
   src: url("../node_modules/sahel-font/dist/Sahel-Bold.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-Bold.woff") format("woff"); }
+/* Black 900: SUBSET to the glyphs it is used for (wordmark + numbers band, 8.7 KB instead of 36 KB).
+   If you use weight 900 for other text, regenerate it (see CLAUDE.md → Fonts) or other letters fall back. */
 @font-face { font-family: "Sahel"; font-weight: 900; font-display: swap;
-  src: url("../node_modules/sahel-font/dist/Sahel-Black.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-Black.woff") format("woff"); }
+  src: url("./fonts/Sahel-Black-subset.woff2") format("woff2"); }
+
+/* Cormorant Garamond italic 500 (OFL, from @fontsource/cormorant-garamond), SUBSET to A–Z a–z 0–9 and
+   basic punctuation: it only sets section numbers and small English labels. 8 KB instead of 24 KB. */
+@font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500; font-display: swap;
+  src: url("./fonts/Cormorant-Garamond-500-italic-subset.woff2") format("woff2"); }

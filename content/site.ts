@@ -337,8 +337,9 @@ export const atelier = {
   /** TEMPORARY Pexels sample photo — not the owner. Replace with a real photo of the workshop's tailor. */
   portrait: "/images/atelier-tailor.jpg",
   portraitLabel: "خیاط پشت میز کار، با متر دور گردن",
-  workshop: "",
-  workshopLabel: "[عکس کارگاه و چرخ‌های خیاطی]",
+  /** TEMPORARY Pexels sample photo — not Mehrpoosh's workshop. Replace with a real photo. */
+  workshop: "/images/atelier-workshop.jpg",
+  workshopLabel: "کارگاه خیاطی با چرخ‌های صنعتی و پارچه‌ی سفید",
 };
 
 export const clients = {

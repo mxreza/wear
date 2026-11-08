@@ -225,7 +225,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .monogram { width: 44px; height: 44px; flex: none; color: var(--gold-500); }
 .monogram-letter { font-family: var(--font); font-weight: 600; font-size: 22px; fill: var(--teal-700); }
 .on-dark .monogram-letter { fill: var(--gold-300); }
-.wordmark-name { font-weight: 600; font-size: 24px; letter-spacing: -0.01em; color: var(--teal-900); line-height: 1; }
+.wordmark-name { font-weight: 900; font-size: 24px; letter-spacing: -0.01em; color: var(--teal-900); line-height: 1; }
 .on-dark .wordmark-name { color: var(--on-dark); }
 
 .nav { position: relative; display: flex; align-items: center; gap: var(--s4); }
@@ -427,7 +427,7 @@ a.lb-title:hover { color: var(--teal-700); }
 .numbers-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s6) var(--s3); }
 .number { display: flex; flex-direction: column; gap: var(--s1); }
 .number-en { font-size: 18px; color: var(--gold-700); }
-.number-value { display: flex; align-items: baseline; gap: 12px; font-weight: 300; font-size: clamp(44px, 5.6vw, 76px); line-height: 1.2; color: var(--teal-900); font-variant-numeric: tabular-nums; }
+.number-value { display: flex; align-items: baseline; gap: 12px; font-weight: 900; font-size: clamp(44px, 5.6vw, 76px); line-height: 1.2; color: var(--teal-900); font-variant-numeric: tabular-nums; }
 .number-unit { font-size: 18px; font-weight: 400; color: var(--ink-muted); }
 .number-label { font-size: 16px; color: var(--ink-muted); max-width: 30ch; }
 .countup { display: inline-grid; }

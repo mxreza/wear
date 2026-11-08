@@ -21,7 +21,14 @@ women, men, children), پک بیمار (new: admission pack, configurable per wa
 - Plain CSS in `app/globals.css` (tokens in `:root`). Sections are server components; only the
   pieces in `components/motion/` are client components.
 - Fonts (self-hosted, work in Iran): Sahel (`sahel-font`, `app/fonts.css`; 300/400/600/700/900) and
-  Cormorant Garamond italic 500 (`@fontsource/cormorant-garamond`, Latin only).
+  Cormorant Garamond italic 500, subset to A–Z a–z 0–9 (`app/fonts/Cormorant-Garamond-500-italic-subset.woff2`,
+  made from `@fontsource/cormorant-garamond` with fontTools like the Black subset below).
+  Sahel Black 900 is used (owner's request) for the wordmark and the numbers band values only, from a
+  SUBSET font `app/fonts/Sahel-Black-subset.woff2` (8.7 KB, keeps Lighthouse ≥ 90). If the brand name or the
+  numbers change, or 900 is used elsewhere, regenerate it with the glyphs needed, e.g.:
+  `pip install fonttools brotli` then `python3 -m fontTools.subset node_modules/sahel-font/dist/Sahel-Black.ttf
+  --text="مهرپوش۲,۰۰۰مستقیمثابت۰۱۲۳۴۵۶۷۸۹0123456789" --layout-features='*' --flavor=woff2
+  --output-file=app/fonts/Sahel-Black-subset.woff2`
 - `trailingSlash: true` → `/products/<slug>/index.html`, so pages work on any plain host as well as Vercel.
 - Tailwind v4 + shadcn structure exist ONLY for `components/ui/` (the clothing rail). The rail and its
   Tailwind CSS are loaded lazily in the browser (`components/motion/RailLazy.tsx` → `RailClient.tsx`, which
@@ -88,7 +95,7 @@ container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
 - Client logos: names are in `clients.items` (7 Hamedan hospitals, confirmed by the owner, logos allowed).
   Logo files still missing — university hospital sites (umsha.ac.ir) refuse connections from outside Iran,
   so they must be uploaded; until then each shows its initial in a stitched circle.
-- Atelier: portrait is a TEMPORARY Pexels sample (not the owner); workshop photo still a placeholder; `atelier.story`, `[bracketed]` facts in `products` (fabric, type,
+- Atelier: portrait and workshop photo are TEMPORARY Pexels samples (not the owner / not her workshop); `atelier.story`, `[bracketed]` facts in `products` (fabric, type,
   sizes, details), `[پارچه]` for patient wear, WhatsApp/Eitaa links (buttons appear when set).
 - Replace ALL temporary Pexels photos (hero, collections, pack, every product) with the workshop's own photos.
 
