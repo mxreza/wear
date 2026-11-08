@@ -7,7 +7,7 @@
   src: url("../node_modules/sahel-font/dist/Sahel-SemiBold.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-SemiBold.woff") format("woff"); }
 @font-face { font-family: "Sahel"; font-weight: 700; font-display: swap;
   src: url("../node_modules/sahel-font/dist/Sahel-Bold.woff2") format("woff2"), url("../node_modules/sahel-font/dist/Sahel-Bold.woff") format("woff"); }
-/* Black 900: SUBSET to the glyphs it is used for (wordmark + numbers band, 8.7 KB instead of 36 KB).
+/* Black 900: SUBSET to the glyphs it is used for (wordmark, hero title, numbers band; ~11 KB instead of 36 KB).
    If you use weight 900 for other text, regenerate it (see CLAUDE.md → Fonts) or other letters fall back. */
 @font-face { font-family: "Sahel"; font-weight: 900; font-display: swap;
   src: url("./fonts/Sahel-Black-subset.woff2") format("woff2"); }

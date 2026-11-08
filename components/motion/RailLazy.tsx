@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import type { ClothingRailHeroProps } from "@/components/ui/product-rail-gallery";
+import { isLiteDevice } from "./useMotionOK";
 
 const RailClient = dynamic(() => import("./RailClient"), { ssr: false });
 
@@ -13,7 +14,9 @@ const RailClient = dynamic(() => import("./RailClient"), { ssr: false });
 export default function RailLazy({ fallback, ...props }: ClothingRailHeroProps & { fallback: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
+  const [lite, setLite] = useState(true);
   useEffect(() => {
+    setLite(isLiteDevice());
     const el = ref.current;
     if (!el) return;
     if (!("IntersectionObserver" in window)) { setShow(true); return; }
@@ -21,5 +24,5 @@ export default function RailLazy({ fallback, ...props }: ClothingRailHeroProps &
     io.observe(el);
     return () => io.disconnect();
   }, []);
-  return <div ref={ref} className="rail-slot">{show ? <RailClient {...props} /> : fallback}</div>;
+  return <div ref={ref} className="rail-slot">{show ? <RailClient {...props} lite={lite} autoplay={props.autoplay && !lite} /> : fallback}</div>;
 }

@@ -23,11 +23,11 @@ women, men, children), پک بیمار (new: admission pack, configurable per wa
 - Fonts (self-hosted, work in Iran): Sahel (`sahel-font`, `app/fonts.css`; 300/400/600/700/900) and
   Cormorant Garamond italic 500, subset to A–Z a–z 0–9 (`app/fonts/Cormorant-Garamond-500-italic-subset.woff2`,
   made from `@fontsource/cormorant-garamond` with fontTools like the Black subset below).
-  Sahel Black 900 is used (owner's request) for the wordmark and the numbers band values only, from a
-  SUBSET font `app/fonts/Sahel-Black-subset.woff2` (8.7 KB, keeps Lighthouse ≥ 90). If the brand name or the
-  numbers change, or 900 is used elsewhere, regenerate it with the glyphs needed, e.g.:
+  Sahel Black 900 is used (owner's request) for the wordmark, the HERO TITLE and the numbers band values, from a
+  SUBSET font `app/fonts/Sahel-Black-subset.woff2` (~11 KB, keeps Lighthouse ≥ 90). If the brand name, hero
+  title or numbers change, or 900 is used elsewhere, regenerate it with the glyphs needed, e.g.:
   `pip install fonttools brotli` then `python3 -m fontTools.subset node_modules/sahel-font/dist/Sahel-Black.ttf
-  --text="مهرپوش۲,۰۰۰مستقیمثابت۰۱۲۳۴۵۶۷۸۹0123456789" --layout-features='*' --flavor=woff2
+  --text="مهرپوش۲,۰۰۰مستقیمثابتدوختی در شأن بیمار و درمانگر۰۱۲۳۴۵۶۷۸۹0123456789،." --layout-features='*' --flavor=woff2
   --output-file=app/fonts/Sahel-Black-subset.woff2`
 - `trailingSlash: true` → `/products/<slug>/index.html`, so pages work on any plain host as well as Vercel.
 - Tailwind v4 + shadcn structure exist ONLY for `components/ui/` (the clothing rail). The rail and its
@@ -85,6 +85,12 @@ container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
 - Text above the fold must not change line count when the web font swaps in (e.g. breadcrumb is one line,
   fixed height) — otherwise CLS.
 - Client motion effects check `useMotionOK()` (mounted + no reduced motion) and render static otherwise.
+- LITE devices (`isLiteDevice()` in `components/motion/useMotionOK.ts`: coarse pointer, ≤ 4 cores, ≤ 4 GB, data-saver)
+  get no Lenis, no parallax (`useRichMotion()`), no rail autoplay / SVG cloth+grain filters / blurred shadows, and no
+  blended grain overlay. Measured on a 6×-throttled phone: scrolling went from 27 to 60 fps, idle CPU from ~100% to ~0.
+- Nothing may animate continuously. The rail's physics loop stops when the rail is off-screen or untouched for 4s
+  (`kickAt` guard in `step`); autoplay only runs while the rail is visible. Check with: CPU throttling ×6, page idle
+  at the top for 5s → main-thread task time should be near 0.
 - `prefers-reduced-motion`: no Lenis, parallax, pinning, scroll-progress or scroll-linked effects; opacity-only fades.
 - One pinned element only: the lookbook horizontal strip (≥1024px). Keep its DOM identical in both
   modes (class/style changes only) or reveal observers lose their targets.

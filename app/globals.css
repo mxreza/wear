@@ -268,7 +268,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero-side { grid-column: 8 / 13; display: flex; flex-direction: column; gap: var(--s3); padding-bottom: 12px; }
 .hero-eyebrow { display: flex; align-items: center; gap: var(--s2); color: var(--gold-700); font-size: 22px; }
 .hero-eyebrow .stitch { width: 64px; }
-.hero-title { color: var(--teal-900); font-size: clamp(44px, 6vw, 88px); }
+.hero-title { color: var(--teal-900); font-weight: 900; font-size: clamp(40px, 5.6vw, 80px); line-height: 1.35; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4); }
 .hero-media { position: relative; margin-inline-start: var(--s3); }
 .hero-media::before {
@@ -556,3 +556,6 @@ a.lb-title:hover { color: var(--teal-700); }
 .rail-slot { min-height: 760px; }
 .rail-fallback { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s2); min-height: 760px; text-align: center; }
 @media (max-width: 767px) { .rail-slot, .rail-fallback { min-height: 640px; } }
+
+/* Lite (touch) devices: no blended grain overlay on dark sections — barely visible at 3%, costly to composite while scrolling. */
+@media (pointer: coarse) { .on-dark::before { display: none; } }

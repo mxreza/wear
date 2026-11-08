@@ -51,6 +51,8 @@ export interface ClothingRailHeroProps extends React.ComponentProps<"section"> {
   hanger?: "wood" | "matte" | "none";
   labels?: ClothingRailHeroLabels;
   onOpenChange?: (index: number | null) => void;
+  /** Weak devices: no SVG cloth/grain filters, no blurred shadows, no autoplay. */
+  lite?: boolean;
 }
 
 const VB_W = 200;
@@ -404,7 +406,7 @@ function SideHanger({ uid, material }: { uid: string; material: "wood" | "matte"
   );
 }
 
-function Fabric({ uid, kind, side, color, trim }: { uid: string; kind: GarmentKind; side: "front" | "back"; color: string; trim: string }) {
+function Fabric({ uid, kind, side, color, trim, lite = false }: { uid: string; kind: GarmentKind; side: "front" | "back"; color: string; trim: string; lite?: boolean }) {
   const art = artFor(kind, side);
   const clip = `url(#${uid}-clip-${kind}-${side})`;
   const knitted = kind === "knit";
@@ -417,14 +419,14 @@ function Fabric({ uid, kind, side, color, trim }: { uid: string; kind: GarmentKi
         {art.panels.map((panel) => <path key={panel.d} d={panel.d} fill={mix(color, panel.t)} />)}
         {art.ribs.map((d) => <path key={d} d={d} fill={mix(trim, 0)} />)}
         {art.ribs.map((d) => <path key={`${d}-rib`} d={d} fill={`url(#${uid}-rib)`} />)}
-        <g filter={`url(#${uid}-soft)`} fill="none" strokeLinecap="round">
+        <g filter={lite ? undefined : `url(#${uid}-soft)`} fill="none" strokeLinecap="round">
           {art.folds.map((d) => <path key={d} d={d} stroke="black" strokeOpacity="0.22" strokeWidth="4" />)}
           {art.folds.map((d) => <path key={`${d}-hi`} d={d} stroke="white" strokeOpacity="0.1" strokeWidth="2" transform="translate(2.2 0)" />)}
           {art.sleeves.map((d) => <path key={`${d}-edge`} d={d} stroke="black" strokeOpacity="0.2" strokeWidth="3" />)}
         </g>
         <rect width={VB_W} height={VB_H} fill={`url(#${uid}-volume)`} />
         <rect width={VB_W} height={VB_H} fill={`url(#${uid}-drape)`} />
-        <rect width={VB_W} height={VB_H} filter={`url(#${uid}-grain)`} opacity="0.16" style={{ mixBlendMode: "multiply" }} />
+        {!lite && <rect width={VB_W} height={VB_H} filter={`url(#${uid}-grain)`} opacity="0.16" style={{ mixBlendMode: "multiply" }} />}
       </g>
       <g fill="none" strokeLinecap="round" strokeLinejoin="round">
         {art.seams.map((d) => <path key={d} d={d} stroke="black" strokeOpacity="0.22" strokeWidth="0.8" />)}
@@ -445,14 +447,14 @@ function Fabric({ uid, kind, side, color, trim }: { uid: string; kind: GarmentKi
   );
 }
 
-function SideArt({ uid, kind, color, trim }: { uid: string; kind: GarmentKind; color: string; trim: string }) {
+function SideArt({ uid, kind, color, trim, lite = false }: { uid: string; kind: GarmentKind; color: string; trim: string; lite?: boolean }) {
   const { body, sleeve, hood, cuff } = sideShapes(kind);
   const knitted = kind === "knit";
-  const soft = `url(#${uid}-soft)`;
+  const soft = lite ? undefined : `url(#${uid}-soft)`;
   const hem = SIDE[kind].hem;
   return (
     <svg aria-hidden="true" viewBox={`0 0 ${VB_W} ${VB_H}`} preserveAspectRatio="xMidYMin meet" className="absolute inset-0 size-full overflow-visible">
-      <g filter={`url(#${uid}-cloth)`}>
+      <g filter={lite ? undefined : `url(#${uid}-cloth)`}>
         {hood && <path d={hood} fill={mix(color, -0.14)} />}
         {hood && <path d={hood} fill="none" stroke="black" strokeOpacity="0.2" strokeWidth="1.2" />}
         <path d={body} fill={color} />
@@ -471,7 +473,7 @@ function SideArt({ uid, kind, color, trim }: { uid: string; kind: GarmentKind; c
           </g>
           <rect width={VB_W} height={VB_H} fill={`url(#${uid}-sidevol)`} />
           <rect width={VB_W} height={VB_H} fill={`url(#${uid}-drape)`} />
-          <rect width={VB_W} height={VB_H} filter={`url(#${uid}-grain)`} opacity="0.16" style={{ mixBlendMode: "multiply" }} />
+          {!lite && <rect width={VB_W} height={VB_H} filter={`url(#${uid}-grain)`} opacity="0.16" style={{ mixBlendMode: "multiply" }} />}
         </g>
         <path d={sleeve} fill={color} />
         <g clipPath={`url(#${uid}-ss-${kind})`}>
@@ -488,7 +490,7 @@ function SideArt({ uid, kind, color, trim }: { uid: string; kind: GarmentKind; c
           </g>
           <rect width={VB_W} height={VB_H} fill={`url(#${uid}-sidevol)`} />
           <rect width={VB_W} height={VB_H} fill={`url(#${uid}-drape)`} />
-          <rect width={VB_W} height={VB_H} filter={`url(#${uid}-grain)`} opacity="0.16" style={{ mixBlendMode: "multiply" }} />
+          {!lite && <rect width={VB_W} height={VB_H} filter={`url(#${uid}-grain)`} opacity="0.16" style={{ mixBlendMode: "multiply" }} />}
         </g>
         <path d={`M82,${cuff + 1} C92,${cuff + 6} 108,${cuff + 7} 118,${cuff + 4}`} fill="none" stroke={mix(color, 0.35)} strokeOpacity="0.45" strokeWidth="0.6" strokeDasharray="1.6 1.4" />
         <path d={`M86,${hem - 3} C92,${hem + 1} 109,${hem + 1} 115,${hem - 3}`} fill="none" stroke={mix(color, 0.35)} strokeOpacity="0.4" strokeWidth="0.6" strokeDasharray="1.6 1.4" />
@@ -510,10 +512,12 @@ type Sim = {
   swing: number[]; vswing: number[];
   tag: number[]; vtag: number[];
   drag: number; grab: number; free: number; last: number; raf: number;
+  /** Last time something set the rail in motion; the loop gives up 4s later (see step). */
+  kickAt: number;
 };
 
 function emptySim(): Sim {
-  return { x: [], vx: [], tx: [], px: [], turn: [], vturn: [], tturn: [], swing: [], vswing: [], tag: [], vtag: [], drag: -1, grab: 0, free: 0, last: 0, raf: 0 };
+  return { x: [], vx: [], tx: [], px: [], turn: [], vturn: [], tturn: [], swing: [], vswing: [], tag: [], vtag: [], drag: -1, grab: 0, free: 0, last: 0, raf: 0, kickAt: 0 };
 }
 
 function footprint(h: number, angle: number, sideW = 0.4) {
@@ -533,10 +537,21 @@ export function ClothingRailHero({
   hanger = "wood",
   labels = DEFAULT_LABELS,
   onOpenChange,
+  lite = false,
   className,
   ...rest
 }: ClothingRailHeroProps) {
   const uid = React.useId().replace(/[^a-zA-Z0-9_-]/g, "");
+  // Only animate while the rail is on screen (autoplay used to run forever, even off-screen).
+  const rootRef = React.useRef(null as HTMLElement | null);
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const el = rootRef.current;
+    if (!el || !("IntersectionObserver" in window)) { setVisible(true); return; }
+    const io = new IntersectionObserver((e) => { const v = !!e[0]?.isIntersecting; live.current.visible = v; setVisible(v); }, { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   const count = items.length;
   const stageRef = React.useRef(null as HTMLDivElement | null);
   const slots = React.useRef([] as (HTMLButtonElement | null)[]);
@@ -559,7 +574,7 @@ export function ClothingRailHero({
   const pendingOpen = React.useRef(-1);
   const pointer = React.useRef({ id: -1, index: -1, x: 0, y: 0, t: 0, moved: false, kind: "", swipe: 0, lastX: 0, lastT: 0, v: 0 });
   const sideWidths = React.useMemo(() => items.map((item) => (item.image ? (item.sideImage ? 0.3 : 0.4) : SIDE[item.kind ?? "tee"].width)), [items]);
-  const live = React.useRef({ active: null as number | null, size, reduced, count, openIndex: null as number | null, carouselIndex: 0, sideWidths });
+  const live = React.useRef({ active: null as number | null, size, reduced, count, openIndex: null as number | null, carouselIndex: 0, sideWidths, visible: true });
   live.current = { ...live.current, active, size, reduced, count, openIndex, sideWidths };
 
   const carouselIndex = size.carousel ? (active ?? live.current.carouselIndex) : null;
@@ -703,6 +718,9 @@ export function ClothingRailHero({
       if (Math.abs((s.vx[i] ?? 0)) > 0.4 || (now > s.free && Math.abs((s.x[i] ?? 0) - (s.tx[i] ?? 0)) > 0.25) || Math.abs((s.turn[i] ?? 0) - (s.tturn[i] ?? 0)) > 0.05 || Math.abs(s.vturn[i] ?? 0) > 0.05 || Math.abs(s.swing[i] ?? 0) > 0.02 || Math.abs(s.vswing[i] ?? 0) > 0.05 || Math.abs((s.tag[i] ?? 0)) > 0.05 || Math.abs(s.vtag[i] ?? 0) > 0.08) busy = true;
     }
     if (s.drag >= 0 || now < s.free) busy = true;
+    // Guards: never keep the loop alive off-screen, and settle (snap) if nothing has moved it for 4s —
+    // in carousel mode the springs and the overlap pass could otherwise oscillate forever.
+    if (busy && s.drag < 0 && (!live.current.visible || (now - s.kickAt > 4000 && now > s.free))) busy = false;
     if (busy) s.raf = requestAnimationFrame(step);
     else {
       s.raf = 0; s.last = 0;
@@ -716,6 +734,7 @@ export function ClothingRailHero({
       for (let i = 0; i < live.current.count; i++) { s.x[i] = s.tx[i] ?? 0; s.turn[i] = s.tturn[i] ?? REST; s.vx[i] = 0; s.vturn[i] = 0; s.swing[i] = 0; s.vswing[i] = 0; paint(i); }
       return;
     }
+    s.kickAt = performance.now();
     if (!s.raf) { s.last = 0; s.raf = requestAnimationFrame(step); }
   }, [paint, step]);
 
@@ -775,7 +794,7 @@ export function ClothingRailHero({
   const stop = React.useCallback(() => setPlaying(false), []);
 
   React.useEffect(() => {
-    if (!playing || reduced || openIndex !== null || count === 0 || !size.width) return;
+    if (!playing || lite || !visible || reduced || openIndex !== null || count === 0 || !size.width) return;
     const first = window.setTimeout(function advance() {
       const current = live.current.active;
       choose(current === null ? 0 : (current + 1) % live.current.count);
@@ -783,7 +802,7 @@ export function ClothingRailHero({
     }, active === null ? 1100 : interval);
     let timer = first;
     return () => window.clearTimeout(timer);
-  }, [playing, reduced, openIndex, count, interval, size.width, choose, active]);
+  }, [playing, lite, visible, reduced, openIndex, count, interval, size.width, choose, active]);
 
   const open = React.useCallback((index: number) => {
     stop();
@@ -921,6 +940,7 @@ export function ClothingRailHero({
   return (
     <section
       {...rest}
+      ref={rootRef}
       data-slot="clothing-rail-hero"
       data-mode={size.carousel ? "carousel" : "rail"}
       data-active={active ?? ""}
@@ -986,13 +1006,13 @@ export function ClothingRailHero({
               onClick={(event) => { const pending = pendingOpen.current; pendingOpen.current = -1; if (event.detail === 0 || pending === i) open(i); }}
             >
               <span ref={(node) => { swings.current[i] = node; }} className="absolute inset-0" style={{ transformOrigin: `50% ${(HOOK_TOP / VB_H) * 100}%` }}>
-                <span aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ filter: `blur(${Math.max(3, h * 0.022).toFixed(1)}px)` }}>
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0" style={lite ? { opacity: 0.6 } : { filter: `blur(${Math.max(3, h * 0.022).toFixed(1)}px)` }}>
                   <span ref={(node) => { shadows.current[i] = node; }} className={`absolute block bg-black opacity-[0.16] dark:opacity-60 ${item.image ? photoBox : "inset-0"}`} style={{ WebkitMask: `${mask} top center / contain no-repeat`, mask: `${mask} top center / contain no-repeat` }} />
                 </span>
                 {(item.sideImage || !item.image) && (
                   <span ref={(node) => { sides.current[i] = node; }} data-face="side" className="absolute inset-0" style={{ transform: `perspective(${PERSPECTIVE}px) rotateY(0deg)` }}>
                     <SideHanger uid={uid} material={hanger} />
-                    {item.sideImage ? <Photo src={item.sideImage} alt="" full={hanger === "none"} /> : <SideArt uid={uid} kind={kind} color={color} trim={trim} />}
+                    {item.sideImage ? <Photo src={item.sideImage} alt="" full={hanger === "none"} /> : <SideArt uid={uid} kind={kind} color={color} trim={trim} lite={lite} />}
                   </span>
                 )}
                 <span ref={(node) => { turns.current[i] = node; }} data-turn className="absolute inset-0 rounded-lg [transform-style:preserve-3d]" style={{ transform: `perspective(${PERSPECTIVE}px) rotateY(${REST}deg)`, opacity: item.image && !item.sideImage ? 1 : 0 }}>
@@ -1002,7 +1022,7 @@ export function ClothingRailHero({
                       <span ref={side === "front" ? (node) => { drapes.current[i] = node; } : undefined} data-drape className="absolute inset-0 origin-top [transform:skewX(var(--drape,0deg))]" style={side === "back" ? { transform: "skewX(calc(var(--drape, 0deg) * -1))" } : undefined}>
                         {item.image
                           ? <Photo src={(side === "back" ? item.backImage : undefined) ?? item.image} alt="" full={hanger === "none"} />
-                          : <Fabric uid={uid} kind={kind} side={side} color={color} trim={trim} />}
+                          : <Fabric uid={uid} kind={kind} side={side} color={color} trim={trim} lite={lite} />}
                         <span ref={side === "front" ? (node) => { shades.current[i] = node; } : undefined} className={`pointer-events-none absolute bg-black ${item.image ? photoBox : "inset-0"}`} style={{ opacity: "var(--shade, 0.2)", WebkitMask: `${item.image ? `url("${(side === "back" ? item.backImage : undefined) ?? item.image}")` : silhouetteMask(kind, side)} top center / contain no-repeat`, mask: `${item.image ? `url("${(side === "back" ? item.backImage : undefined) ?? item.image}")` : silhouetteMask(kind, side)} top center / contain no-repeat` }} />
                       </span>
                     </span>
