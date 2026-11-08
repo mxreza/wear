@@ -1,6 +1,9 @@
 import { clients, sections } from "@/content/site";
 import SectionHeader from "./SectionHeader";
 
+/** "بیمارستان بعثت" → "ب" (first letter after the word بیمارستان), used until a logo file is added. */
+const initial = (name: string) => name.replace(/^بیمارستان\s+(قلب\s+)?/, "").trim().charAt(0);
+
 export default function Clients() {
   const s = sections.clients;
   return (
@@ -15,7 +18,7 @@ export default function Clients() {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img className="client-logo" src={c.logo} alt="" loading="lazy" />
               ) : (
-                <span className="client-logo client-logo--ph" aria-hidden="true">{clients.logoPlaceholder}</span>
+                <span className="client-logo client-logo--ph" aria-hidden="true">{initial(c.name)}</span>
               )}
               <span className="client-name">{c.name}</span>
             </li>

@@ -334,24 +334,29 @@ export const atelier = {
   text: `لباس‌های ${BRAND_NAME} در کارگاه خودمان در همدان دوخته می‌شوند و بی‌واسطه به بیمارستان‌ها و داروخانه‌ها می‌رسند. بیشتر مشتری‌های ما بارها سفارش داده‌اند و سفارش‌ها ادامه دارد.`,
   story: "[داستان کارگاه: از کی شروع شد، چرا، و چه چیزی برای خیاط آن مهم است.]",
   signature: "پریسا طاهری",
-  portrait: "",
-  portraitLabel: "[عکس خیاط پشت میز کار]",
+  /** TEMPORARY Pexels sample photo — not the owner. Replace with a real photo of the workshop's tailor. */
+  portrait: "/images/atelier-tailor.jpg",
+  portraitLabel: "خیاط پشت میز کار، با متر دور گردن",
   workshop: "",
   workshopLabel: "[عکس کارگاه و چرخ‌های خیاطی]",
 };
 
 export const clients = {
   title: "مورد اعتماد بیمارستان‌ها و داروخانه‌های همدان",
-  /** Only real customers. `logo`: file in /public/images/clients/ (use only with the centre's permission). */
+  /**
+   * Centres Mehrpoosh has worked with (confirmed by the owner, with permission to show their logos).
+   * `logo`: put the file in /public/images/clients/ and set e.g. "/images/clients/besat.png".
+   * Without a logo, the first letter of the name is shown in a stitched circle.
+   */
   items: [
-    { name: "[نام مرکز]", logo: "" },
-    { name: "[نام مرکز]", logo: "" },
-    { name: "[نام مرکز]", logo: "" },
-    { name: "[نام مرکز]", logo: "" },
-    { name: "[نام مرکز]", logo: "" },
-    { name: "[نام مرکز]", logo: "" },
+    { name: "بیمارستان بعثت", logo: "" },
+    { name: "بیمارستان شهید بهشتی", logo: "" },
+    { name: "بیمارستان فرشچیان (سینا)", logo: "" },
+    { name: "بیمارستان قلب فرشچیان", logo: "" },
+    { name: "بیمارستان فاطمیه", logo: "" },
+    { name: "بیمارستان اکباتان", logo: "" },
+    { name: "بیمارستان بوعلی", logo: "" },
   ],
-  logoPlaceholder: "لوگو",
 };
 
 export const contactSection = {

@@ -8,6 +8,7 @@ Product covers (`*-1.jpg`) are cropped to 4:5 (720×900); other photos are resiz
 | File | Pexels photo |
 |---|---|
 | hero-patient.jpg (cropped 4:5) | https://www.pexels.com/photo/6129143/ |
+| atelier-tailor.jpg (cropped 4:5) — NOT the owner, sample only | https://www.pexels.com/photo/6461195/ |
 | product-gown.jpg | https://www.pexels.com/photo/6010813/ |
 | collection-staff.jpg | https://www.pexels.com/photo/11661517/ |
 | product-pack.jpg, pack.jpg | https://www.pexels.com/photo/11894049/ |
