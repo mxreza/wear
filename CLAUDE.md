@@ -1,0 +1,39 @@
+# Parsa medical apparel landing page
+
+One-page Persian (RTL) landing page for «تولیدی پوشاک پزشکی پارسا», a sewing workshop in Hamedan
+that produces hospital clothing (patient gowns, MRI sets, spun-bond and Tetron staff wear, patient
+packs) for bulk orders from hospitals, clinics, imaging centers and pharmacies.
+
+## Goal of the page
+Get bulk-order enquiries (phone call) from procurement staff at medical centers.
+Trust is built on: direct production (no middleman), 2,000 pieces/month capacity, repeat customers
+in Hamedan. Do NOT mention licenses/permits anywhere.
+
+## Stack
+- Next.js 15 App Router, React 19, TypeScript, static export (`output: "export"` → `/out`).
+- Plain CSS in `app/globals.css` (design tokens in `:root`). No Tailwind.
+- Font: Vazirmatn via `@fontsource/vazirmatn` (self-hosted, no Google Fonts call — works in Iran).
+
+## Where things are
+- `content/site.ts` — ALL copy, products, contact info, image paths. Edit content here, not in components.
+- `components/` — one component per section, in page order (see `app/page.tsx`).
+- `components/Media.tsx` — shows an image if `src` is set, else a labelled placeholder.
+- `public/images/` — put real photos and logo here, then reference them as `/images/<file>`.
+
+## Pending (placeholders still in place)
+- Logo (currently a green circle with «پ»).
+- All photos: hero, 5 products, patient pack, 6 gallery items, workshop.
+- Workshop story line in `about.story`.
+- WhatsApp / Eitaa / Telegram links in `contact` (buttons appear automatically when set).
+- Patient pack is a new product, not yet sold — keep the «جدید» badge until real photos exist.
+
+## Conventions
+- Persian digits in visible text (۰–۹); phone `tel:` link uses Latin digits.
+- Keep `dir="rtl"`; use logical CSS (`padding-inline`, `text-align` start/end) for new rules.
+- Design motifs: dashed "stitch" borders, yellow measuring-tape band. Keep them; avoid gradients and emoji.
+- Touch targets ≥ 44px; check at 375px width.
+
+## Commands
+- `npm install`
+- `npm run dev` — local preview at http://localhost:3000
+- `npm run build` — static site in `/out`, upload its contents to any host
