@@ -29,7 +29,8 @@ in Hamedan. Do NOT mention licenses/permits anywhere.
 ## Pending (placeholders still in place)
 - Logo (currently a green circle with «پ»).
 - Rail garment photos (`image`/`backImage`/`sideImage`, transparent 200×310 cut-outs).
-- All photos: hero, 5 products, patient pack, 6 gallery items, workshop.
+- Real photos for hero, 5 products, patient pack, 6 gallery items, workshop. These currently show
+  TEMPORARY Pexels stock photos (list in `public/images/CREDITS.md`) — replace before launch.
 - Workshop story line in `about.story`.
 - WhatsApp / Eitaa / Telegram links in `contact` (buttons appear automatically when set).
 - Patient pack is a new product, not yet sold — keep the «جدید» badge until real photos exist.

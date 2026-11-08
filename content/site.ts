@@ -3,6 +3,8 @@ import type { RailGarment } from "@/components/ui/product-rail-gallery";
 // All page copy lives here. Edit this file to change text, products or contact info.
 // To add a real photo: put the file in /public/images and set `image: "/images/<name>.jpg"`.
 // When `image` is empty, a labelled placeholder is shown instead.
+// NOTE: current photos are temporary free stock photos from Pexels (see public/images/CREDITS.md).
+// Replace them with real photos of Parsa's own products and workshop before launch.
 
 export const brand = {
   name: "پارسا",
@@ -25,8 +27,8 @@ export const hero = {
   title: "لباس بیمار، پرستار و پزشک، مستقیم از دست تولیدکننده",
   text: "تولیدی پوشاک پزشکی پارسا برای بیمارستان‌ها، درمانگاه‌ها، مراکز تصویربرداری، کلینیک‌ها و داروخانه‌ها لباس و پک بیمار را در تعداد عمده می‌دوزد و تحویل می‌دهد.",
   proof: "تأمین‌کننده‌ی بیمارستان‌ها و داروخانه‌های همدان",
-  image: "",
-  imageLabel: "جای عکس نمونه: ست لباس بیمار روی مانکن یا تخت",
+  image: "/images/hero-patient.jpg",
+  imageLabel: "بیمار با لباس بیمارستان روی تخت، کنار پرستار",
 };
 
 export const stats = [
@@ -49,40 +51,40 @@ export const products: Product[] = [
   {
     title: "ست کامل MRI",
     text: "ست کامل لباس بیمار برای بخش MRI و مراکز تصویربرداری.",
-    image: "",
-    imageLabel: "جای عکس: ست MRI",
+    image: "/images/product-mri.jpg",
+    imageLabel: "بیمار در دستگاه MRI",
     href: "#contact",
     cta: "استعلام قیمت",
   },
   {
     title: "گان، کلاه و شلوار بیمار",
     text: "ست لباس بیمار برای بستری و اقدامات درمانی، در تعداد عمده.",
-    image: "",
-    imageLabel: "جای عکس: گان، کلاه و شلوار بیمار",
+    image: "/images/product-gown.jpg",
+    imageLabel: "گان آبی بیمار",
     href: "#contact",
     cta: "استعلام قیمت",
   },
   {
     title: "بلوز و شلوار اسپان",
     text: "زنانه و مردانه، از پارچه‌ی اسپان؛ سبک و اقتصادی برای کادر درمان.",
-    image: "",
-    imageLabel: "جای عکس: بلوز و شلوار اسپان",
+    image: "/images/product-spunbond.jpg",
+    imageLabel: "پارچه‌ی تاشده برای لباس کادر درمان",
     href: "#contact",
     cta: "استعلام قیمت",
   },
   {
     title: "پیراهن و شلوار تترون",
     text: "زنانه، مردانه و بچگانه، از پارچه‌ی تترون برای استفاده‌ی مکرر و شست‌وشوی چندباره.",
-    image: "",
-    imageLabel: "جای عکس: پیراهن و شلوار تترون",
+    image: "/images/product-tetron.jpg",
+    imageLabel: "پرستار با لباس فرم سبز",
     href: "#contact",
     cta: "استعلام قیمت",
   },
   {
     title: "پک و کیف بیمار",
     text: "پک آماده‌ی پذیرش بیمار، با ترکیبی که شما تعیین می‌کنید.",
-    image: "",
-    imageLabel: "جای عکس: پک و کیف بیمار",
+    image: "/images/product-pack.jpg",
+    imageLabel: "کیف کوچک با اقلام بهداشتی",
     href: "#pack",
     cta: "دیدن جزئیات پک",
   },
@@ -94,8 +96,8 @@ export const pack = {
   text: "به‌جای سفارش جداگانه‌ی لباس، دمپایی و دماسنج، یک پک آماده تحویل بگیرید. ترکیب پک را بر اساس نیاز بخش یا مرکز شما می‌بندیم.",
   items: ["لباس بیمار (گان، شلوار و کلاه)", "دمپایی", "دماسنج", "کیف بیمار"],
   cta: "سفارش پک برای مرکز شما",
-  image: "",
-  imageLabel: "جای عکس نمونه: پک بیمار باز شده، با همه‌ی اقلام",
+  image: "/images/pack.jpg",
+  imageLabel: "کیف باز شده با اقلام مورد نیاز بیمار",
 };
 
 export const reasons = [
@@ -125,20 +127,20 @@ export const steps = [
 ];
 
 export const gallery = [
-  { image: "", label: "نمونه‌کار ۱: لباس بیمار" },
-  { image: "", label: "نمونه‌کار ۲: ست MRI" },
-  { image: "", label: "نمونه‌کار ۳: لباس کادر درمان" },
-  { image: "", label: "نمونه‌کار ۴: جزئیات دوخت" },
-  { image: "", label: "نمونه‌کار ۵: بسته‌بندی عمده" },
-  { image: "", label: "نمونه‌کار ۶: پک بیمار" },
+  { image: "/images/gallery-1-patient.jpg", label: "نمونه‌کار ۱: لباس بیمار" },
+  { image: "/images/gallery-2-mri.jpg", label: "نمونه‌کار ۲: ست MRI" },
+  { image: "/images/gallery-3-staff.jpg", label: "نمونه‌کار ۳: لباس کادر درمان" },
+  { image: "/images/gallery-4-stitching.jpg", label: "نمونه‌کار ۴: جزئیات دوخت" },
+  { image: "/images/gallery-5-stack.jpg", label: "نمونه‌کار ۵: بسته‌بندی عمده" },
+  { image: "/images/gallery-6-kit.jpg", label: "نمونه‌کار ۶: پک بیمار" },
 ];
 
 export const about = {
   title: "پارسا یک کارگاه خیاطی است، نه یک فروشگاه",
   text: "ما لباس را خودمان می‌دوزیم و مستقیم به مراکز درمانی می‌رسانیم. مشتری‌های ما بیمارستان‌ها، درمانگاه‌ها و داروخانه‌های همدان هستند و بیشترشان بارها سفارش داده‌اند.",
   story: "[اینجا یک یا دو جمله از داستان کارگاه بیاید: از کی شروع شد و چرا.]",
-  image: "",
-  imageLabel: "جای عکس نمونه: کارگاه و چرخ‌های خیاطی",
+  image: "/images/about-workshop.jpg",
+  imageLabel: "کارگاه خیاطی با چرخ‌های صنعتی",
 };
 
 export const contactSection = {
