@@ -1,49 +1,85 @@
-# Mehrpoosh medical apparel landing page
+# Mehrpoosh — medical-apparel atelier portfolio
 
-One-page Persian (RTL) landing page for «تولیدی پوشاک پزشکی مهرپوش», a sewing workshop in Hamedan
-owned by خانم پریسا طاهری (Parisa Taheri), the contact person on the page,
-that produces hospital clothing (patient gowns, MRI sets, spun-bond and Tetron staff wear, patient
-packs) for bulk orders from hospitals, clinics, imaging centers and pharmacies.
+One-page Persian (RTL) **portfolio** (not a shop) for «مهرپوش», a medical-apparel sewing workshop in
+Hamedan owned by خانم پریسا طاهری (Parisa Taheri), the contact person on the page. Three collections:
+پوشاک بیمار (gown, cap, pants, MRI set), پوشاک جراحی و کادر درمان (spun-bond/اسپان and Tetron/تترون;
+women, men, children), پک بیمار (new: admission pack, configurable per ward).
 
-## Goal of the page
-Get bulk-order enquiries (phone call) from procurement staff at medical centers.
-Trust is built on: direct production (no middleman), 2,000 pieces/month capacity, repeat customers
-in Hamedan. Do NOT mention licenses/permits anywhere.
+## Goal & facts
+- Single conversion: a phone call / messenger contact for a bulk-order enquiry.
+- Facts allowed (nothing beyond them): direct production in her own workshop, no middleman; 2,000
+  garments/month; supplies hospitals & pharmacies in Hamedan with repeat customers; bulk orders only.
+- NEVER mention licenses, permits, certifications or standards. Never invent customer names, years,
+  statistics or testimonials — use `[bracketed placeholders]` instead.
+- Brand name is one constant, `BRAND_NAME` in `content/site.ts` (provisional). «مهر» = care: let it set
+  the tone, never as a pun. Copy: calm, precise, short; no «بهترین/بی‌نظیر», no «!», no emoji; verb-first buttons.
 
 ## Stack
-- Next.js 15 App Router, React 19, TypeScript, static export (`output: "export"` → `/out`).
-- Plain CSS in `app/globals.css` (design tokens in `:root`) for all hand-written sections.
-- Tailwind v4 + shadcn structure ONLY for third-party components in `components/ui/`
-  (`app/tailwind.css`, `components.json`, `lib/utils.ts`). Preflight is NOT loaded, so Tailwind
-  does not reset the site; shadcn tokens (`--color-foreground` …) map to the site's palette there.
-  Don't use Tailwind classes in the hand-written section components.
-- Font: Sahel (OFL) via the `sahel-font` package, declared in `app/fonts.css` (self-hosted, no Google
-  Fonts call — works in Iran). Weights available: 300, 400, 600, 700, 900.
+- Next.js 15 App Router, React 19, TypeScript, static export (`output: "export"` → `/out`),
+  `experimental.inlineCss` (CSS is inlined in the HTML — keeps Lighthouse mobile ≥ 90).
+- `motion` 14.6.0 (scroll-linked effects), `lenis` 1.3.27 (smooth scroll). Exact versions pinned.
+- Plain CSS in `app/globals.css` (tokens in `:root`). Sections are server components; only the
+  pieces in `components/motion/` are client components.
+- Fonts (self-hosted, work in Iran): Sahel (`sahel-font`, `app/fonts.css`; 300/400/600/700/900) and
+  Cormorant Garamond italic 500 (`@fontsource/cormorant-garamond`, Latin only).
+- Tailwind v4 + shadcn structure exist ONLY for `components/ui/` (the clothing-rail component, currently
+  not rendered). `app/tailwind.css` is imported by `components/RailShowcase.tsx`, not globally.
 
 ## Where things are
-- `content/site.ts` — ALL copy, products, contact info, image paths. Edit content here, not in components.
-- `components/` — one component per section, in page order (see `app/page.tsx`).
-- `components/RailShowcase.tsx` + `components/ui/product-rail-gallery.tsx` — interactive clothing rail
-  (2nd section). Content in `rail` in `content/site.ts`; garments are drawn until photos are added.
-- `components/Media.tsx` — shows an image if `src` is set, else a labelled placeholder.
-- `public/images/` — put real photos and logo here, then reference them as `/images/<file>`.
+- `content/site.ts` — ALL copy, collections, lookbook, craft steps, numbers, clients, contact, image paths.
+- `app/page.tsx` — section order: Header, Hero, Statement, Collections, Lookbook, PatientPack, Craft,
+  Numbers, Atelier, Clients, Contact, Footer (one component each in `components/`).
+- `components/Media.tsx` — image or placeholder; always pass `ratio` so photos cause no layout shift.
+- `components/SectionHeader.tsx` («No. 0X — label» + stitch), `Stitch.tsx`, `CareLabel.tsx`, `Monogram.tsx`.
+- `components/motion/` — SmoothScroll, ScrollProgress, RevealObserver, ParallaxInner, HeroParallax,
+  Magnetic, StatementWords, LookbookScroller, CraftThread, CountUp, `useMotionOK` hook.
+- `public/images/` — photos; `CREDITS.md` lists the temporary Pexels stock photos.
 
-## Pending (placeholders still in place)
-- Logo (currently a green circle with «م»).
-- Rail garment photos (`image`/`backImage`/`sideImage`, transparent 200×310 cut-outs).
-- Real photos for hero, 5 products, patient pack, 6 gallery items, workshop. These currently show
-  TEMPORARY Pexels stock photos (list in `public/images/CREDITS.md`) — replace before launch.
-- Workshop story line in `about.story`.
-- WhatsApp / Eitaa / Telegram links in `contact` (buttons appear automatically when set).
-- Patient pack is a new product, not yet sold — keep the «جدید» badge until real photos exist.
+## Design tokens (`:root` in globals.css)
+| Token | Value | Use |
+|---|---|---|
+| `--teal-900` | #0A3B3A | dark sections, footer, headings |
+| `--teal-700` | #0F5C5A | brand, buttons, care labels |
+| `--teal-500` | #2E8582 | accents only — NOT text on light (4.1:1) |
+| `--teal-100` | #E3EFEE | placeholders, soft backgrounds |
+| `--gold-500` | #B8945A | lines, ticks, dots, decoration — NOT text on light (2.7:1) |
+| `--gold-300` | #D9C29A | gold text on dark |
+| `--gold-700` | #7D6131 | gold text on light (5.4:1) — added for contrast |
+| `--paper` / `--surface` | #F7F8F6 / #FFF | page / cards |
+| `--ink` / `--ink-muted` | #122524 / #55706D | body / secondary text |
+Teal ≈ 60–70% of colour weight, gold ≤ 10% and never a large fill. No gradients except the subtle
+radial vignette on dark sections. No pure black. 8pt spacing scale; section padding 160/96/72px;
+container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
+
+## Motifs
+- Stitch line: dashed 1px (6/6) SVG, draws right→left via `stroke-dashoffset` mask on reveal.
+- Measuring tape: ruler ticks (8px, long every 40px) — top scroll-progress bar and the numbers band.
+- Care label: tag with punched hole (collection names, «جدید», «مجموعه‌ی جدید»); swings 2° on hover.
+- Pattern-paper grid behind Craft; fabric-grain noise (3%) on dark sections. All inline SVG, no image files.
+- Cards: NO borders. `--surface` on `--paper`, soft layered shadow, radius 2px, image edge-to-edge.
+
+## Motion rules
+- Animate only `transform`, `opacity` (+ SVG stroke-dashoffset/pathLength). Ease `cubic-bezier(.22,1,.36,1)`, 400–900ms, nothing bouncy.
+- Content is readable without JS: `<html class="js">` is set by an inline script; reveal CSS only hides
+  `[data-reveal]:not(.in)` under `.js`. `RevealObserver` adds `.in`. Don't wrap the hero in reveals.
+- Client motion effects check `useMotionOK()` (mounted + no reduced motion) and render static otherwise.
+- `prefers-reduced-motion`: no Lenis, parallax, pinning, scroll-progress or scroll-linked effects; opacity-only fades.
+- One pinned element only: the lookbook horizontal strip (≥1024px). Keep its DOM identical in both
+  modes (class/style changes only) or reveal observers lose their targets.
+- Statement words start at opacity 0.15 (spec); Lighthouse flags this as low contrast while dim.
+
+## Pending (placeholders)
+- Logo (monogram «م» in `components/Monogram.tsx`; set `brand.logo` to replace).
+- Lookbook photos (7), atelier portrait + workshop photo, `atelier.story`, fabric/type for lookbook items,
+  `[پارچه]` for patient wear, client names (`clients.names`), WhatsApp/Eitaa links (buttons appear when set).
+- Replace temporary Pexels photos (hero, collections, pack) with the workshop's own photos.
 
 ## Conventions
-- Persian digits in visible text (۰–۹); phone `tel:` link uses Latin digits.
-- Keep `dir="rtl"`; use logical CSS (`padding-inline`, `text-align` start/end) for new rules.
-- Design motifs: dashed "stitch" borders, yellow measuring-tape band. Keep them; avoid gradients and emoji.
-- Touch targets ≥ 44px; check at 375px width.
+- Persian digits in visible Persian text (`lib/fa.ts`); `tel:` uses Latin digits. Latin italic only for
+  section numbers («No. 01») and small English labels.
+- `dir="rtl"`; logical CSS properties. Touch targets ≥ 44px; check 375 / 768 / 1280 / 1440px.
 
 ## Commands
-- `npm install`
-- `npm run dev` — local preview at http://localhost:3000
-- `npm run build` — static site in `/out`, upload its contents to any host
+- `npm install` · `npm run dev` (http://localhost:3000) · `npm run build` (static site in `/out`)
+- Every push to `main` deploys to Vercel: https://wear-gilt.vercel.app
+- FTP deploy to an Iranian host: `.github/workflows/deploy-ftp.yml` (manual; needs FTP secrets).

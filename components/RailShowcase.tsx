@@ -1,3 +1,4 @@
+import "@/app/tailwind.css";
 import ClothingRailHero from "@/components/ui/product-rail-gallery";
 import { rail } from "@/content/site";
 

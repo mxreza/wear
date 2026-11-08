@@ -10,13 +10,13 @@
 
 /* shadcn token names mapped onto the site's own palette (see :root in globals.css). */
 @theme inline {
-  --color-background: var(--bg);
+  --color-background: var(--paper);
   --color-foreground: var(--ink);
-  --color-muted-foreground: var(--ink-3);
+  --color-muted-foreground: var(--ink-muted);
   --color-card: #fff;
   --color-card-foreground: var(--ink);
-  --color-border: var(--line);
-  --color-ring: var(--accent);
+  --color-border: var(--teal-100);
+  --color-ring: var(--gold-500);
   --font-sans: var(--font);
 }
 

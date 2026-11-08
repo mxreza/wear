@@ -1,21 +1,28 @@
-import { hero } from "@/content/site";
+import { cta, hero } from "@/content/site";
 import Media from "./Media";
+import Stitch from "./Stitch";
+import Magnetic from "./motion/Magnetic";
+import HeroParallax from "./motion/HeroParallax";
 
 export default function Hero() {
   return (
-    <section id="top" className="container hero">
-      <div className="hero-copy">
-        <h1>{hero.title}</h1>
-        <div className="stitch" aria-hidden="true" />
-        <p className="hero-text">{hero.text}</p>
-        <div className="hero-actions">
-          <a className="btn btn-accent" href="#contact">استعلام قیمت سفارش عمده</a>
-          <a className="btn btn-outline" href="#products">دیدن محصولات</a>
+    <section id="top" className="hero" aria-labelledby="hero-title">
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <p className="hero-eyebrow" data-reveal>
+            <span className="latin" lang="en">{hero.eyebrow}</span>
+            <Stitch id="hero" />
+          </p>
+          <h1 id="hero-title" className="display hero-title">{hero.title}</h1>
+          <p className="lead">{hero.text}</p>
+          <div className="hero-actions">
+            <Magnetic><a className="btn btn-primary" href="#contact">{cta.primary}</a></Magnetic>
+            <a className="link" href="#lookbook">{cta.lookbook}</a>
+          </div>
         </div>
-        <p className="hero-proof">{hero.proof}</p>
-      </div>
-      <div className="hero-media frame">
-        <Media src={hero.image} label={hero.imageLabel} />
+        <HeroParallax className="hero-media">
+          <Media src={hero.image} label={hero.imageLabel} ratio="4 / 5" priority />
+        </HeroParallax>
       </div>
     </section>
   );
