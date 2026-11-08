@@ -1,5 +1,7 @@
 # Builds the static site and uploads the `out/` folder to the host over FTP.
-# Runs on every push to main, or manually from the Actions tab ("Run workflow").
+# The live site is on Vercel (https://wear-gilt.vercel.app), which deploys every push to main by itself.
+# This FTP workflow is MANUAL ONLY (Actions tab → "Run workflow") until FTP secrets are set.
+# To make it run on every push again, add back:  push: { branches: [main] }  under `on:`.
 #
 # Setup (GitHub repo → Settings → Secrets and variables → Actions):
 #   Secrets:   FTP_SERVER     e.g. ftp.example.ir   (host only, no ftp://)
@@ -12,8 +14,6 @@
 name: Deploy to host (FTP)
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:

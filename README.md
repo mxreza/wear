@@ -17,3 +17,9 @@ npm run build   # خروجی استاتیک در پوشه‌ی out
 
 ## انتشار
 بعد از `npm run build` محتوای پوشه‌ی `out` را روی هر هاست معمولی آپلود کن؛ سرور Node لازم نیست.
+
+## سایت منتشرشده
+https://wear-gilt.vercel.app — هر پوش به شاخه‌ی `main` خودکار روی Vercel منتشر می‌شود.
+
+آپلود روی هاست ایرانی با FTP هم آماده است (`.github/workflows/deploy-ftp.yml`)، ولی فقط دستی اجرا می‌شود؛
+اول اطلاعات FTP را در Settings → Secrets and variables → Actions وارد کنید.
