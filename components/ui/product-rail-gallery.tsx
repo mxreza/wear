@@ -1238,14 +1238,15 @@ function Detail({ uid, item, index, total, hanger, labels, reduced, source, onLi
               {item.details.map((detail) => <li key={detail} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{detail}</li>)}
             </ul>
           )}
-          <div role="group" aria-label={`${labels.front} / ${labels.back}`} className="mt-2 inline-flex justify-center gap-6 md:justify-start">
+          {/* Front/back toggle only when there is a real back view (a back photo, or a drawn garment). */}
+          {(!item.image || item.backImage) && <div role="group" aria-label={`${labels.front} / ${labels.back}`} className="mt-2 inline-flex justify-center gap-6 md:justify-start">
             {(["front", "back"] as const).map((face) => (
               <button key={face} type="button" aria-pressed={side === face} onClick={() => turnTo(face)} className={`relative min-h-11 pb-1.5 text-base outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring ${side === face ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}>
                 {face === "front" ? labels.front : labels.back}
                 <span aria-hidden="true" className={`absolute inset-x-0 bottom-0 h-px origin-left bg-foreground transition-transform duration-300 motion-reduce:transition-none ${side === face ? "scale-x-100" : "scale-x-0"}`} />
               </button>
             ))}
-          </div>
+          </div>}
         </div>
       </div>
     </div>,

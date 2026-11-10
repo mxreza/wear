@@ -371,15 +371,16 @@ export const contactSection = {
 export const rail = {
   eyebrow: `رگال محصولات ${BRAND_NAME}`,
   heading: "لباس‌ها را از روی رگال ببینید",
-  caption: "روی لباس‌ها بروید یا بکشید؛ روی هر کدام بزنید تا پشت و جزئیاتش را ببینید.",
+  caption: "روی لباس‌ها بروید یا بکشید؛ روی هر کدام بزنید تا بزرگ‌تر ببینید.",
   cta: "استعلام قیمت سفارش عمده",
   labels: { front: "جلو", back: "پشت", close: "بستن", show: "نمایش" },
+  /**
+   * ONLY real garments (owner's product photos, background removed, on a 400×620 transparent canvas —
+   * the top of the garment right under the drawn hanger). Add more as photos arrive:
+   * `image` = front, optional `backImage` (then a front/back toggle appears in the detail view).
+   */
   items: [
-    { id: "gown", name: "گان بیمار", kind: "coat", color: "#9cc7de", tag: "عمده", description: "گان بلند بیمار برای بستری و اقدامات درمانی؛ همراه کلاه و شلوار، در تعداد عمده.", details: ["گان، کلاه و شلوار", "سفارش عمده"] },
-    { id: "mri", name: "ست کامل MRI", kind: "tee", color: "#5f8fb8", tag: "MRI", description: "ست کامل لباس بیمار برای بخش MRI و مراکز تصویربرداری.", details: ["مراکز تصویربرداری", "ست کامل"] },
-    { id: "spun-women", name: "بلوز اسپان زنانه", kind: "tee", color: "#a9d6cf", tag: "اسپان", description: "از پارچه‌ی اسپان؛ سبک و اقتصادی برای کادر درمان.", details: ["اسپان", "زنانه", "بلوز و شلوار"] },
-    { id: "spun-men", name: "بلوز اسپان مردانه", kind: "tee", color: "#7fb3c9", tag: "اسپان", description: "از پارچه‌ی اسپان؛ سبک و اقتصادی برای کادر درمان.", details: ["اسپان", "مردانه", "بلوز و شلوار"] },
-    { id: "tetron", name: "پیراهن تترون", kind: "shirt", color: "#1f7a72", trim: "#e8f2f0", tag: "تترون", description: "از پارچه‌ی تترون برای استفاده‌ی مکرر و شست‌وشوی چندباره.", details: ["تترون", "زنانه و مردانه", "پیراهن و شلوار"] },
-    { id: "tetron-kids", name: "پیراهن تترون بچگانه", kind: "shirt", color: "#8fc1a9", trim: "#f4fbf8", tag: "بچگانه", description: "سایز بچگانه از پارچه‌ی تترون.", details: ["تترون", "بچگانه"] },
+    { id: "gown", name: "گان بیمار", image: "/images/rail/patient-gown.webp", tag: "عمده", description: "گان بیمار برای بستری و اقدامات درمانی؛ همراه کلاه و شلوار، در تعداد عمده.", details: ["گان، کلاه و شلوار", "سفارش عمده"] },
+    { id: "pants", name: "شلوار بیمار", image: "/images/rail/patient-pants.webp", tag: "عمده", description: "شلوار بیمار با کمر کشی؛ جدا یا همراه گان و کلاه.", details: ["کمر کشی", "جدا یا همراه گان", "سفارش عمده"] },
   ] satisfies RailGarment[],
 };

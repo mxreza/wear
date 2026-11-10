@@ -99,6 +99,8 @@ container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
 - Statement words start at opacity 0.15 (spec); Lighthouse flags this as low contrast while dim.
 
 ## Pending (placeholders)
+- Rail: shows ONLY real garments (owner's photos, background removed): gown + pants so far, in
+  `public/images/rail/`. Need the owner's photos for MRI set, spun-bond blouses, Tetron shirt, kids Tetron.
 - Logo (monogram «م» in `components/Monogram.tsx`; set `brand.logo` to replace).
 - Client logos: names are in `clients.items` (7 Hamedan hospitals, confirmed by the owner, logos allowed).
   Logo files still missing — university hospital sites (umsha.ac.ir) refuse connections from outside Iran,
