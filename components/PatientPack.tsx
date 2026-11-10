@@ -25,7 +25,7 @@ export default function PatientPack() {
           <a className="btn btn-light rv" style={{ ["--i" as string]: 6 }} href="#contact">{pack.cta}</a>
         </div>
         <div className="pack-media rv" data-reveal>
-          <Media src={pack.image} label={pack.imageLabel} ratio="4 / 5" parallax />
+          <Media src={pack.image} label={pack.imageLabel} ratio="4 / 5" contain />
         </div>
       </div>
     </section>

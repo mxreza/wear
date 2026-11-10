@@ -16,7 +16,7 @@ export default function Collections() {
         <ul className="collections-row" data-reveal>
           {collections.map((c, i) => (
             <li key={c.id} className="card collection-card rv" style={{ ["--i" as string]: i }}>
-              <Media src={c.image} label={c.imageLabel} ratio="3 / 2" parallax />
+              <Media src={c.image} label={c.imageLabel} ratio="3 / 2" parallax={!c.imageContain} contain={c.imageContain} />
               <div className="card-body">
                 <div className="card-title-row">
                   <CareLabel as="h3">{c.name}</CareLabel>

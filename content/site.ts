@@ -72,6 +72,8 @@ export type Collection = {
   materials: string[];
   image: string;
   imageLabel: string;
+  /** White-background product shot: show it whole instead of cropping. */
+  imageContain?: boolean;
   isNew?: boolean;
 };
 
@@ -97,13 +99,15 @@ export const collections: Collection[] = [
     name: "پک بیمار",
     text: "پک آماده‌ی پذیرش بیمار، با ترکیبی که برای هر بخش جداگانه بسته می‌شود.",
     materials: ["لباس بیمار", "دمپایی", "دماسنج", "کیف"],
-    image: "/images/product-pack.jpg",
+    image: "/images/product-pack.webp",
+    imageContain: true,
     imageLabel: "کیف کوچک با اقلام بهداشتی",
     isNew: true,
   },
 ];
 
-export type ProductImage = { src: string; label: string };
+/** `contain`: white-background product shot — shown whole instead of cropped. */
+export type ProductImage = { src: string; label: string; contain?: boolean };
 
 export type Product = {
   slug: string; // URL: /products/<slug>/
@@ -180,8 +184,7 @@ export const products: Product[] = [
     ],
     details: ["بستری و اقدامات درمانی", "جدا یا همراه گان", "سفارش عمده"],
     images: [
-      { src: "/images/products/patient-set-1.jpg", label: "بیمار با لباس بیمارستان روی تخت" },
-      { src: "/images/products/patient-set-2.jpg", label: "بیمار روی ویلچر کنار پزشک" },
+      { src: "/images/products/patient-set-1.webp", label: "ست گان، کلاه و شلوار بیمار به رنگ سرمه‌ای", contain: true },
       { src: "/images/products/patient-set-3.jpg", label: "بیمار با لباس بیمارستان روی ویلچر در راهرو" },
     ],
   },
@@ -281,7 +284,7 @@ export const products: Product[] = [
     ],
     details: ["لباس بیمار", "دمپایی", "دماسنج", "کیف بیمار", "ترکیب برای هر بخش"],
     images: [
-      { src: "/images/products/patient-pack-1.jpg", label: "کیف باز با اقلام بهداشتی" },
+      { src: "/images/products/patient-pack-1.webp", label: "پک بیمار: کیف، دمپایی، لباس بیمار و اقلام بهداشتی", contain: true },
       { src: "/images/products/patient-pack-2.jpg", label: "کیف و اقلام مراقبت" },
       { src: "/images/products/patient-pack-3.jpg", label: "دماسنج دیجیتال" },
       { src: "/images/products/patient-pack-4.jpg", label: "دماسنج و اقلام دارویی" },
@@ -311,8 +314,8 @@ export const pack = {
   text: "به‌جای سفارش جداگانه‌ی هر قلم، یک پک آماده تحویل بگیرید. ترکیب پک را برای هر بخش جداگانه می‌بندیم.",
   items: ["لباس بیمار: گان، کلاه و شلوار", "دمپایی", "دماسنج", "کیف بیمار"],
   cta: "طراحی پک برای بخش شما",
-  image: "/images/pack.jpg",
-  imageLabel: "کیف باز شده با اقلام مورد نیاز بیمار",
+  image: "/images/pack.webp",
+  imageLabel: "پک بیمار: کیف، دمپایی، لباس بیمار و اقلام بهداشتی",
 };
 
 export const craftSteps = [
@@ -330,16 +333,13 @@ export const numbers = [
 ];
 
 export const atelier = {
-  title: "کارگاهی کوچک، با دقتی که در سفارش بزرگ هم کم نمی‌شود",
+  title: "کارگاهی بزرگ، با دقت یک خیاط در هر قطعه",
   text: `لباس‌های ${BRAND_NAME} در کارگاه خودمان در همدان دوخته می‌شوند و بی‌واسطه به بیمارستان‌ها و داروخانه‌ها می‌رسند. بیشتر مشتری‌های ما بارها سفارش داده‌اند و سفارش‌ها ادامه دارد.`,
   story: "[داستان کارگاه: از کی شروع شد، چرا، و چه چیزی برای خیاط آن مهم است.]",
   signature: "پریسا طاهری",
-  /** TEMPORARY Pexels sample photo — not the owner. Replace with a real photo of the workshop's tailor. */
-  portrait: "/images/atelier-tailor.jpg",
-  portraitLabel: "خیاط پشت میز کار، با متر دور گردن",
-  /** TEMPORARY Pexels sample photo — not Mehrpoosh's workshop. Replace with a real photo. */
-  workshop: "/images/atelier-workshop.jpg",
-  workshopLabel: "کارگاه خیاطی با چرخ‌های صنعتی و پارچه‌ی سفید",
+  /** Photo supplied by the owner. */
+  image: "/images/atelier-workshop-own.webp",
+  imageLabel: "سالن تولید با خیاط‌ها پشت چرخ‌های صنعتی و لباس‌های آبی بیمارستانی روی میزها",
 };
 
 export const clients = {

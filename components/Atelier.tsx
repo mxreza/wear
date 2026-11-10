@@ -15,11 +15,8 @@ export default function Atelier() {
           <p className="prose atelier-story rv" style={{ ["--i" as string]: 2 }}>{atelier.story}</p>
           <p className="atelier-sign rv" style={{ ["--i" as string]: 3 }}><Stitch id="sign" />{atelier.signature}</p>
         </div>
-        <div className="atelier-portrait rv" data-reveal>
-          <Media src={atelier.portrait} label={atelier.portraitLabel} ratio="4 / 5" parallax />
-        </div>
-        <div className="atelier-workshop rv" data-reveal>
-          <Media src={atelier.workshop} label={atelier.workshopLabel} ratio="3 / 2" />
+        <div className="atelier-media rv" data-reveal>
+          <Media src={atelier.image} label={atelier.imageLabel} ratio="819 / 545" parallax />
         </div>
       </div>
     </section>

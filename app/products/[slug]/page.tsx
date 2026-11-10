@@ -74,7 +74,8 @@ export default async function ProductPage({ params }: Params) {
                       label={img.label}
                       ratio={i === 0 ? "4 / 5" : i === all.length - 1 && i % 2 === 1 ? "3 / 2" : "4 / 5"}
                       priority={i === 0}
-                      parallax={i > 0}
+                      parallax={i > 0 && !img.contain}
+                      contain={img.contain}
                     />
                   </div>
                 ))}
@@ -106,7 +107,7 @@ export default async function ProductPage({ params }: Params) {
                   {related.map((r, i) => (
                     <li key={r.slug} className="card rv" style={{ ["--i" as string]: i }}>
                       <a href={productHref(r.slug)} className="related-link">
-                        <Media src={r.images[0]?.src} label={r.images[0]?.label ?? r.title} ratio="4 / 3" />
+                        <Media src={r.images[0]?.src} label={r.images[0]?.label ?? r.title} ratio="4 / 3" contain={r.images[0]?.contain} />
                         <span className="card-body">
                           <span className="lb-title">{r.title}</span>
                           <span className="muted card-text">{r.summary}</span>

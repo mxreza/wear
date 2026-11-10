@@ -49,6 +49,8 @@ women, men, children), پک بیمار (new: admission pack, configurable per wa
   scroll-snap row below 1024px (checked at 360/375/390px).
 - Clients: `clients.items` = `{ name, logo }`; logo files go in `public/images/clients/` (only with permission).
 - `components/Media.tsx` — image or placeholder; always pass `ratio` so photos cause no layout shift.
+  `contain` shows white-background product shots whole (set `contain: true` on a product image /
+  `imageContain` on a collection) instead of cropping them.
 - `components/SectionHeader.tsx` («No. 0X — label» + stitch), `Stitch.tsx`, `CareLabel.tsx`, `Monogram.tsx`.
 - `components/motion/` — SmoothScroll, ScrollProgress, RevealObserver, ParallaxInner, HeroParallax,
   Magnetic, StatementWords, LookbookScroller, CraftThread, CountUp, `useMotionOK` hook.
@@ -101,7 +103,7 @@ container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
 - Client logos: names are in `clients.items` (7 Hamedan hospitals, confirmed by the owner, logos allowed).
   Logo files still missing — university hospital sites (umsha.ac.ir) refuse connections from outside Iran,
   so they must be uploaded; until then each shows its initial in a stitched circle.
-- Atelier: portrait and workshop photo are TEMPORARY Pexels samples (not the owner / not her workshop); `atelier.story`, `[bracketed]` facts in `products` (fabric, type,
+- Atelier: one large photo of the real production floor (owner-supplied); heading says «کارگاهی بزرگ» (owner's request); `atelier.story`, `[bracketed]` facts in `products` (fabric, type,
   sizes, details), `[پارچه]` for patient wear, WhatsApp/Eitaa links (buttons appear when set).
 - Replace ALL temporary Pexels photos (hero, collections, pack, every product) with the workshop's own photos.
 

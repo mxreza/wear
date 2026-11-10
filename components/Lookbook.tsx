@@ -18,7 +18,7 @@ export default function Lookbook() {
       {products.map((p, i) => (
         <figure key={p.slug} className="lb-item rv" data-reveal>
           <a className="lb-link" href={productHref(p.slug)} aria-label={`${productPage.view}: ${p.title}`}>
-            <Media src={p.images[0]?.src} label={p.images[0]?.label ?? p.title} ratio="4 / 5" />
+            <Media src={p.images[0]?.src} label={p.images[0]?.label ?? p.title} ratio="4 / 5" contain={p.images[0]?.contain} />
           </a>
           <figcaption className="lb-caption">
             <span className="lb-no latin" dir="ltr" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
