@@ -35,6 +35,3 @@ Product covers (`*-1.jpg`) are cropped to 4:5 (720×900); other photos are resiz
 | products/tetron-kids-1.jpg | https://www.pexels.com/photo/6129141/ |
 | products/tetron-kids-2.jpg | https://www.pexels.com/photo/6129683/ |
 | products/tetron-kids-3.jpg | https://www.pexels.com/photo/11733651/ |
-| products/patient-pack-2.jpg | https://www.pexels.com/photo/5673523/ |
-| products/patient-pack-3.jpg | https://www.pexels.com/photo/5858740/ |
-| products/patient-pack-4.jpg | https://www.pexels.com/photo/3873213/ |

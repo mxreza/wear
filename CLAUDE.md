@@ -103,7 +103,7 @@ container 1240px; text ≤ 60ch; asymmetric 12-col layouts.
 - Client logos: names are in `clients.items` (7 Hamedan hospitals, confirmed by the owner, logos allowed).
   Logo files still missing — university hospital sites (umsha.ac.ir) refuse connections from outside Iran,
   so they must be uploaded; until then each shows its initial in a stitched circle.
-- Atelier: one large photo of the real production floor (owner-supplied); heading says «کارگاهی بزرگ» (owner's request); `atelier.story`, `[bracketed]` facts in `products` (fabric, type,
+- Atelier: one large photo of the real production floor (owner-supplied); heading says «کارگاهی بزرگ» (owner's request); `[bracketed]` facts in `products` (fabric, type,
   sizes, details), `[پارچه]` for patient wear, WhatsApp/Eitaa links (buttons appear when set).
 - Replace ALL temporary Pexels photos (hero, collections, pack, every product) with the workshop's own photos.
 

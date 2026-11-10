@@ -12,7 +12,7 @@ export default function Atelier() {
           <SectionHeader id="atelier" no={s.no} label={s.label} />
           <h2 id="atelier-title" className="h2 rv">{atelier.title}</h2>
           <p className="prose rv" style={{ ["--i" as string]: 1 }}>{atelier.text}</p>
-          <p className="prose atelier-story rv" style={{ ["--i" as string]: 2 }}>{atelier.story}</p>
+          {atelier.story && <p className="prose atelier-story rv" style={{ ["--i" as string]: 2 }}>{atelier.story}</p>}
           <p className="atelier-sign rv" style={{ ["--i" as string]: 3 }}><Stitch id="sign" />{atelier.signature}</p>
         </div>
         <div className="atelier-media rv" data-reveal>
